@@ -1,0 +1,32 @@
+syntax = "proto3";
+package pb;
+// 班级
+message Class {
+    int32 num = 1;
+    repeated Student students = 2;
+}
+
+// 学生
+message Student {
+    string name = 1;
+    int32 age = 2;
+    Sex sex = 3;
+}
+
+//性别
+enum Sex {
+    MAN = 0;
+    WOMAN = 1;
+}
+
+message Example1 {
+     string stringVal = 1;
+     bytes bytesVal = 2;
+    message EmbeddedMessage {
+        int32 int32Val = 1;
+        string stringVal = 2;
+    }
+     EmbeddedMessage embeddedExample1 = 3;
+    repeated int32 repeatedInt32Val = 4;
+    repeated string repeatedStringVal = 5;
+}
