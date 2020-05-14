@@ -43,6 +43,7 @@ func main() {
 		log.Fatal(err) //log.Fatal()会产生panic
 	}
 	defer listenner.Close()
+	
 	for {
 		conn, err := listenner.Accept() //阻塞等待客户端连接
 		if err != nil {
