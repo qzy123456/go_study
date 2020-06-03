@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-    
+
 	config := sarama.NewConfig()
 	config.Producer.Return.Successes = true
 	config.Producer.Timeout = 5 * time.Second

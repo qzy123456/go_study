@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/Shopify/toxiproxy" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/cpuguy83/go-md2man" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/crossin/gluttonous" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/deckarep/golang-set" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/denisenkom/go-mssqldb" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/erikstmartin/go-testdb" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/fevin/gracehttp" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/fortytw2/leaktest" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/garyburd/redigo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/go-playground/validator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/go-sql-driver/mysql" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/golang-sql/civil" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/google/uuid" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/hashicorp/go-uuid" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/hprose/hprose-golang" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/aescts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/dnsutils" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/gofork" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/goidentity" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/gokrb5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jcmturner/rpc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jinzhu/gorm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jinzhu/inflection" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/jinzhu/now" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/klauspost/cpuid" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/lib/pq" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/lonng/nano" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/mattn/go-sqlite3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/pingcap/check" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/pingcap/errors" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/pingcap/log" vcs="Git" />

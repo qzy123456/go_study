@@ -10,16 +10,24 @@ import (
 //Slow function
 func sleepRandom(fromFunction string, ch chan int) {
 	//defer cleanup
-	defer func() { fmt.Println(fromFunction, "sleepRandom complete") }()
+	defer func() { 
+		fmt.Println(fromFunction, "sleepRandom complete") 
+	}()
 	//Perform a slow task
 	//For illustration purpose,
 	//Sleep here for random ms
 	seed := time.Now().UnixNano()
+
 	r := rand.New(rand.NewSource(seed))
+
 	randomNumber := r.Intn(100)
+
 	sleeptime := randomNumber + 100
+
 	fmt.Println(fromFunction, "Starting sleep for", sleeptime, "ms")
+
 	time.Sleep(time.Duration(sleeptime) * time.Millisecond)
+
 	fmt.Println(fromFunction, "Waking up, slept for ", sleeptime, "ms")
 	//write on the channel if it was passed in
 	if ch != nil {
@@ -110,6 +118,4 @@ func main() {
 	}()
 	//Do work
 	doWorkContext(ctxWithCancel)
-
-
 }

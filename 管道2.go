@@ -17,14 +17,14 @@ func main() {
 }
 
 func pump1(ch chan int) {
-	for i := 0; ; i++ {
+	for i := 0; i < 9 ; i++ {
 		ch <- i * 2
 		time.Sleep(time.Duration(time.Second))
 	}
 }
 
 func pump2(ch chan string) {
-	for i := 0; ; i++ {
+	for i := 0; i < 9; i++ {
 		ch <- strconv.Itoa(i+5)
 		time.Sleep(time.Duration(time.Second))
 	}

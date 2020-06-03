@@ -22,7 +22,7 @@ func main() {
 	var b *int = &a
 	var c **int = &b
 	var x int = *b
-	fmt.Println("a = ",a) 						//1
+	fmt.Println("a=",a) 						//1
 	fmt.Println("&a = ",&a) 						//地址
 	fmt.Println("*&a = ",*&a) 					//1
 	fmt.Println("b = ",b) 						//地址
