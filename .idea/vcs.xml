@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/Shopify/toxiproxy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/bitly/go-simplejson" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/cpuguy83/go-md2man" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/crossin/gluttonous" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/github.com/deckarep/golang-set" vcs="Git" />
@@ -46,6 +47,7 @@
     <mapping directory="$PROJECT_DIR$/src/go.uber.org/atomic" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/go.uber.org/multierr" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/go.uber.org/zap" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/golang.org/x/net" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/gopkg.in/jcmturner/gokrb5.v7" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/gopkg.in/natefinch/lumberjack.v2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/gopkg.in/yaml.v2" vcs="Git" />
