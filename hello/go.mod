@@ -2,4 +2,4 @@ module hello
 
 go 1.12
 
-require github.com/gin-gonic/gin v1.6.2 // indirect
+require github.com/tidwall/gjson v1.6.0
