@@ -3997,7 +3997,7 @@
   <component name="ToolWindowManager">
     <frame x="1952" y="22" width="1855" height="1058" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.15609486" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.15609486" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -4010,7 +4010,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32712215" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32712215" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3281412" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32712215" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
