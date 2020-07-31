@@ -140,10 +140,7 @@ func hashOperation(client *redis.Client) {
 	client.HSet("user_xys", "age", "18"); // 向名称为 user_xys 的 hash 中添加元素 age
 
 	// 批量地向名称为 user_test 的 hash 中添加元素 name 和 age
-	 has  := make(map[string]interface{})
-	 has["name"] = "zhangsan"
-	 has["age"] = 15
-	client.HMSet("user_test", has)
+	client.HMSet("user_test", map[string]interface{}{"name":"张三","age":12})
 	// 批量获取名为 user_test 的 hash 中的指定字段的值.
 	fields, err := client.HMGet("user_test", "name", "age").Result()
 	if err != nil {
