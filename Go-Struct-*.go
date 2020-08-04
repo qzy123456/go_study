@@ -33,4 +33,16 @@ func main() {
 
 	// 如果要显示 B 的 Name 值
 	fmt.Println("b的名字为：", b.A.Name)
+
+	c := []int{1,23,42,5}
+	test22(c)
+	fmt.Println("first",c)
+}
+
+func test22(c []int)  {
+	c[0] = 222
+	fmt.Println("sssss",c)
+	c =  append(c,1,2,3,4,5,6)
+	fmt.Println("xxxxxx",c)
+
 }
