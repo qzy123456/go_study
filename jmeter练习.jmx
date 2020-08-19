@@ -1,0 +1,1496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1 r1853635">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="头条测试" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="cloud_api" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1422262895000</longProp>
+        <longProp name="ThreadGroup.end_time">1422262895000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="user/reg" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;${appId}&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;deviceId&quot;:&quot;${deviceId}&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/user/reg</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器，获取token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">token;</stringProp>
+            <stringProp name="RegexExtractor.regex">.*&quot;token&quot;:&quot;(.+?)&quot;.*</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">null</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="hotupdate/update" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;2112&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;,&#xd;
+ 	&quot;tag&quot;: &quot;{\&quot;16\&quot;:\&quot;1553597703\&quot;,\&quot;26\&quot;:\&quot;1553597703\&quot;}&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;third&quot;:&quot;FB&quot;,&#xd;
+     &quot;openIds&quot;:{&#xd;
+      &quot;openId&quot;:&quot;测试---id2&quot;&#xd;
+     }&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/hotupdate/update</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="图形结果" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Summariser guiclass="SummariserGui" testclass="Summariser" testname="生成概要结果" enabled="true"/>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="第三方登录(QQ,FB,IOS,GOOGLE)，只是地址不同而已" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;thirdBind&quot;:&quot;测试---id2&quot;,&#xd;
+      &quot;thirdName&quot;:&quot;测试22222&quot;,&#xd;
+      &quot;thirdIco&quot;:&quot;测试dsddsd&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/user/fblogin</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="updateUserInfo" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+    &quot;data&quot;:{&#xd;
+     &quot;username&quot;:&quot;测试用户名字&quot;,&#xd;
+      &quot;thirdIco&quot;:&quot;https://images2018.cnblogs.com/blog/1236621/201805/1236621-20180510155601915-1680470936.png&quot;,&#xd;
+      &quot;thirdName&quot;:&quot;2112&quot;,&#xd;
+      &quot;email&quot;:&quot;12122@163.com&quot;&#xd;
+    	}&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/user/update</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getinfobyopenid" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+ 	 &#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;third&quot;:&quot;APPLE1&quot;,&#xd;
+     &quot;openIds&quot;:[&quot;apple-id&quot;]&#xd;
+    }&#xd;
+   &#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/user/getinfobyopenid</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="productlist" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;,&#xd;
+ 	&quot;tag&quot;:&quot;2222&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;store&quot;:&quot;${Store}&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/product/list</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">product_store_id;product_id;price;</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.list.productStoreList[0].product_store_id;$.list.productStoreList[0].product_id;$.list.productStoreList[0].price;</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0;0;0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">1;1;1</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="purchase/create" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;3213123123&quot;,&#xd;
+ 	&quot;tag&quot;:&quot;2222&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;provider&quot;:&quot;${Store}&quot;,&#xd;
+     &quot;product_store_id&quot;:${product_store_id},&#xd;
+     &quot;product_id&quot;:&quot;${product_id}&quot;, &#xd;
+     &quot;sourceType&quot;:1,  &#xd;
+     &quot;extendDesc&quot;:&quot;简单描述&quot;,&#xd;
+     &quot;currency&quot;:&quot;这是货币类型&quot;,&#xd;
+     &quot;money&quot;:${price}&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/purchase/create</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器,获取订单id" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">purchaseId</stringProp>
+            <stringProp name="RegexExtractor.regex">.*&quot;purchaseId&quot;:&quot;(.+?)&quot;.*</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">null</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="purchase/cancel" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;,&#xd;
+ 	&quot;tag&quot;:&quot;2222&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;purchaseId&quot;:&quot;${purchaseId}&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/purchase/cancel</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="purchase/unused" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;,&#xd;
+ 	&quot;tag&quot;:&quot;2222&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+    &#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/purchase/unused</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="purchase/use" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;mybo_flow&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;小鸟萌萌消&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;,&#xd;
+ 	&quot;tag&quot;:&quot;2222&quot;&#xd;
+ },&#xd;
+ &quot;_appInfo&quot;:{&#xd;
+ 	&quot;googlePlayKey&quot;:&quot;22222222&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;${token}&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;purchaseId&quot;:&quot;${purchaseId}&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/purchase/use</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="cloud_url地址通用全局变量" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="cloud" elementType="Argument">
+              <stringProp name="Argument.name">cloud</stringProp>
+              <stringProp name="Argument.value">www.cloud.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">测试地址</stringProp>
+            </elementProp>
+            <elementProp name="appId" elementType="Argument">
+              <stringProp name="Argument.name">appId</stringProp>
+              <stringProp name="Argument.value">mybo_flow</stringProp>
+              <stringProp name="Argument.desc">游戏id</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="deviceId" elementType="Argument">
+              <stringProp name="Argument.name">deviceId</stringProp>
+              <stringProp name="Argument.value">00000000-60d3-ff228-ffxxff-ffff85fbfb05</stringProp>
+              <stringProp name="Argument.desc">模拟设备id</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="Store" elementType="Argument">
+              <stringProp name="Argument.name">Store</stringProp>
+              <stringProp name="Argument.value">IOSStore</stringProp>
+              <stringProp name="Argument.desc">商店名字  IOSStore 或者 GooglePlay 或者 Simulator </stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+          <stringProp name="TestPlan.comments">cloud的通用地址</stringProp>
+        </Arguments>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="pop_api" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1422262895000</longProp>
+        <longProp name="ThreadGroup.end_time">1422262895000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="user/reg   设备id注册用户，生成custermID，uuid" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;sys&quot;:{&#xd;
+	&quot;appId&quot;: &quot;${appId}&quot;,&#xd;
+	&quot;MyCompany&quot;: &quot;Mybo&quot;, &#xd;
+	&quot;MyGame&quot;: &quot;头条&quot; &#xd;
+    },&#xd;
+  &quot;device&quot;:{&#xd;
+  	&quot;deviceType&quot;: &quot;ipad&quot;, &#xd;
+  	&quot;os&quot;: &quot;ios&quot;, &#xd;
+  	&quot;osVersion&quot;: &quot;1.0.0&quot; &#xd;
+  }, &#xd;
+ &quot;app&quot;: { &#xd;
+ 	&quot;version&quot;: &quot;1.1.1&quot;, &#xd;
+ 	&quot;distributionChannel&quot;: &quot;app store&quot;&#xd;
+ },&#xd;
+ &quot;data&quot;:{&#xd;
+    &quot;accessToken&quot;:&quot;&quot;,&#xd;
+    &quot;clientTime&quot;: &quot;1527565570&quot;,&#xd;
+    &quot;param&quot;:{&#xd;
+     &quot;deviceId&quot;:&quot;${deviceId}&quot;&#xd;
+    }&#xd;
+}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${cloud}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/user/reg</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取customerId;uuid" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">customerId;uuid</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.customerId;$.uuid</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1;1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">1111;1111</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="global/reg  中心注册服务器，根据上面的uuid，custermId，分配用户的接口url" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;1545880874595&quot;: [&#xd;
+            &quot;global/reg&quot;,&#xd;
+            &quot;${uuid}&quot;,&#xd;
+            &quot;${customerId}&quot;&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;configVersion&quot;: &quot;1.3.9&quot;,&#xd;
+    &quot;appVersion&quot;: &quot;1.5.4&quot;,&#xd;
+    &quot;platform&quot;: &quot;1&quot;,&#xd;
+    &quot;cloud&quot;:&quot;${cloud}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${global}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取对应服务器接口url" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">pop;uid</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.server_url;$.data.uid</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1;1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">11;1111</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="user/create 创建用户" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&#xd;
+            &quot;user/create&quot;,&#xd;
+            ${uid},&#xd;
+            ${customerId},&#xd;
+            &quot;GooglePlay&quot;,&#xd;
+            &quot;android&quot;,&#xd;
+            80&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="User/Initialize 用户初始化接口" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&#xd;
+            &quot;User/Initialize&quot;&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="通关接口 Score/NewLevelUpdate" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&#xd;
+            &quot;score/newLevelUpdate&quot;,1,1,1050,5,{&quot;1279&quot;:5},{&quot;triggerdynamics&quot;:1,&quot;integral&quot;:1},{&quot;sagaSeason&quot;:&quot;3213&quot;,&quot;triggerdynamics&quot;:1,&quot;integral&quot;:1}&#xd;
+        ],&#xd;
+        &quot;15882377590998&quot;: [&#xd;
+            &quot;score/newLevelUpdate&quot;,1,2,1050,5,{&quot;1279&quot;:5},{&quot;triggerdynamics&quot;:1,&quot;integral&quot;:1},{&quot;sagaSeason&quot;:&quot;3213&quot;,&quot;triggerdynamics&quot;:1,&quot;integral&quot;:1}&#xd;
+        ]&#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="商店购买 shop/buy" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&#xd;
+            &quot;shop/Buy&quot;,1001&#xd;
+        ]&#xd;
+      &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="关前购买 shop/preBuy" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&#xd;
+            &quot;shop/preBuy&quot;,1001,13,1&#xd;
+        ]&#xd;
+      &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="现金购买金币，礼包  shop/gold" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&quot;Shop/Gold&quot;,&quot;xs_diamand_package&quot;,{}]&#xd;
+      &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="公告 BulletinBoard/List" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&quot;BulletinBoard/List&quot;]&#xd;
+      &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/purchase/cancel</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="邮件列表 email/emaillist" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&quot;email/emaillist&quot;]&#xd;
+      &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="城建 Family/Update" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;: &quot;&quot;,&#xd;
+    &quot;deviceId&quot;: &quot;00000000-371e-cdb4-0000-000016557e06&quot;,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;15882377590997&quot;: [&quot;Family/Update&quot;,&#xd;
+  {&#xd;
+    &quot;quests&quot;:[{&quot;questId&quot;:&quot;c2h1_clean_up_the_shop11&quot;,&quot;show&quot;:0,&quot;initStoryPlay&quot;:1,&quot;state&quot;:&quot;complete&quot;,&quot;draw_effect&quot;:0,&quot;step&quot;:&quot;step_complete_1&quot;,&quot;own_steps&quot;:&quot;{\&quot;step_complete_0\&quot;:1}&quot;}],&#xd;
+    &quot;reward_amount&quot;:1&#xd;
+  }&#xd;
+   ]   &#xd;
+    },&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;platform&quot;: 1&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${pop}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Summariser guiclass="SummariserGui" testclass="Summariser" testname="生成概要结果" enabled="true"/>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="图形结果" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="pop-api地址通用全局变量" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="global" elementType="Argument">
+              <stringProp name="Argument.name">global</stringProp>
+              <stringProp name="Argument.value">www.global.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">中心注册服务器，分配用户接口地址</stringProp>
+            </elementProp>
+            <elementProp name="appVersion" elementType="Argument">
+              <stringProp name="Argument.name">appVersion</stringProp>
+              <stringProp name="Argument.value">1.5.4.11705</stringProp>
+              <stringProp name="Argument.desc">客户端版本号</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="configVersion" elementType="Argument">
+              <stringProp name="Argument.name">configVersion</stringProp>
+              <stringProp name="Argument.value">1.3.9</stringProp>
+              <stringProp name="Argument.desc">服务器版本号</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="cloud_url地址通用全局变量" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="cloud" elementType="Argument">
+              <stringProp name="Argument.name">cloud</stringProp>
+              <stringProp name="Argument.value">www.cloud.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">热更，注册生成用户uuid服务器地址</stringProp>
+            </elementProp>
+            <elementProp name="appId" elementType="Argument">
+              <stringProp name="Argument.name">appId</stringProp>
+              <stringProp name="Argument.value">mybo_flow</stringProp>
+              <stringProp name="Argument.desc">游戏id</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="deviceId" elementType="Argument">
+              <stringProp name="Argument.name">deviceId</stringProp>
+              <stringProp name="Argument.value">00000000-60d3-ff228-ffxxff-ffff85fbfb05</stringProp>
+              <stringProp name="Argument.desc">模拟设备id</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+          <stringProp name="TestPlan.comments">cloud的通用地址</stringProp>
+        </Arguments>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="log_api" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1422262895000</longProp>
+        <longProp name="ThreadGroup.end_time">1422262895000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="维护心跳  online/setlog" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;uuid&quot;: &quot;${uuid}&quot;,&#xd;
+    &quot;appVersion&quot;: &quot;${appVersion}&quot;,&#xd;
+    &quot;configVersion&quot;: &quot;${configVersion}&quot;,&#xd;
+    &quot;tag&quot;:{&quot;222&quot;:&quot;1590994600&quot;,&quot;263&quot;:&quot;1590994600&quot;},&#xd;
+    &quot;platform&quot;:0,&#xd;
+    &quot;actions&quot;: {&#xd;
+        &quot;1444471287251&quot;: [&quot;online/setlog&quot;]&#xd;
+    }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${log}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v1/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Summariser guiclass="SummariserGui" testclass="Summariser" testname="生成概要结果" enabled="true"/>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="图形结果" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="log-api地址通用全局变量" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="log" elementType="Argument">
+              <stringProp name="Argument.name">log</stringProp>
+              <stringProp name="Argument.value">www.log.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">log服务器心跳</stringProp>
+            </elementProp>
+            <elementProp name="appVersion" elementType="Argument">
+              <stringProp name="Argument.name">appVersion</stringProp>
+              <stringProp name="Argument.value">1.5.4.11705</stringProp>
+              <stringProp name="Argument.desc">客户端版本号</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="configVersion" elementType="Argument">
+              <stringProp name="Argument.name">configVersion</stringProp>
+              <stringProp name="Argument.value">1.3.9</stringProp>
+              <stringProp name="Argument.desc">服务器版本号</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="uuid" elementType="Argument">
+              <stringProp name="Argument.name">uuid</stringProp>
+              <stringProp name="Argument.value">2dfdf-dsfg-g324-fsg1fg-d1422</stringProp>
+              <stringProp name="Argument.desc">用户唯一id标识（心跳服务器直接写死,不做用户校验）</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
