@@ -181,8 +181,8 @@ func DecryptDES_ECB(src, key string) string {
 	return string(out)
 }
 func main() {
-	//var aeskey = []byte("e4ad2122c3d2b2bc")
-	//pass := []byte("57542fc19f98607c")
+	//var aeskey = []byte("11111111111")
+	//pass := []byte("22222222")
 	//xpass, err := AesEncrypt(pass, aeskey)
 	//if err != nil {
 	//	fmt.Println(err)
