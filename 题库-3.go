@@ -19,11 +19,13 @@ func main() {
 	var peo  = Stduent{}
 	think := "bitch"
 	fmt.Println(peo.Speak(think))
+
 	if live() == nil {
 		fmt.Println("AAAAAAA")
 	} else {
 		fmt.Println("BBBBBBB")
 	}
+	//BBBBBBB
 }
 
 type People22 interface {

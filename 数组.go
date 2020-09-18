@@ -55,8 +55,11 @@ func main()  {
 	//将第二个slice里的元素拷贝到第一个slice里，拷贝的长度为两个slice中长度较小的长度值
 	copy(s11,s211 )          // dst:s2, src:s
 	fmt.Println(s211)
+	fmt.Println(s11)
 	fmt.Println(data11)
-
+	//[0 1 2 3 4]
+	//[0 1]
+	//[0 1 2 3 4 5 6 7 0 1]
 
 
 

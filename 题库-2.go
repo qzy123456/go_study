@@ -11,8 +11,8 @@ type threadSafeSet struct {
 }
 
 func (set *threadSafeSet) Iter() <-chan interface{} {
-	ch := make(chan interface{}) // 解除注释看看！
-	//ch := make(chan interface{}, len(set.s))
+	ch := make(chan interface{}) // 解除注释看看！   //Iter: 0 (0x10a4ea0,0x10df6e0)
+	//ch := make(chan interface{}, len(set.s))    //Iter: 0 (0x10a4ea0,0x10df6e0) Iter: 1 (0x10a4ea0,0x10df6e0)
 	go func() {
 		set.RLock()
 		for elem, value := range set.s{
