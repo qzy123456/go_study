@@ -23,13 +23,6 @@ type RequestLimiter struct {
 	ReqCount int // 目前的请求数
 }
 
-func (reqLimiter *RequestLimiter) IsAvailable() bool {
-	reqLimiter.Lock.Lock()
-	defer reqLimiter.Lock.Unlock()
-
-	return reqLimiter.ReqCount < reqLimiter.MaxCount
-}
-
 // 非阻塞
 func (reqLimiter *RequestLimiter) AddRequestCount() bool {
 	reqLimiter.Lock.Lock()
@@ -40,7 +33,7 @@ func (reqLimiter *RequestLimiter) AddRequestCount() bool {
 	}
 	return false
 }
-
+//初始化限流器，计时器
 func NewRequestLimitService(interval time.Duration, maxCount int) *RequestLimiter {
 	reqLimit := &RequestLimiter{
 		Interval: interval,

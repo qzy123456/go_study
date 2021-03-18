@@ -20,7 +20,6 @@ func main() {
 		if hasToken {
 			fmt.Println(time.Now())
 		}
-
 	}
 }
 
@@ -34,9 +33,11 @@ type BucketLimiter struct {
 
 func AddWater(bucket *BucketLimiter) bool {
 	now := time.Now()
+	//剩余水量 =  当前水量 - 时间 * 速率
 	leftWater := math.Max(0, bucket.Water-now.Sub(bucket.Timestamp).Seconds()*bucket.Rate)
 	bucket.Lock.Lock()
 	defer bucket.Lock.Unlock()
+	//当前水量小于桶的容量
 	if leftWater+1 < bucket.Capacity {
 		// 尝试加水，此时水桶未满
 		bucket.Timestamp = now
