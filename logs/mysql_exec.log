@@ -1,2 +1,0 @@
-[xorm] [info]  2019/08/21 17:10:31.218367 [SQL] SELECT `uid`, `silver_coin`, `gold_coin`, `task_turnover`, `shop_grade`, `lives`, `last`, `new_level`, `stars`, `chest_last`, `chest_number` FROM `user_info_1` WHERE (uid = ?) LIMIT 1 []interface {}{57}
-[xorm] [info]  2019/08/21 17:11:00.290283 [SQL] SELECT `uid`, `silver_coin`, `gold_coin`, `task_turnover`, `shop_grade`, `lives`, `last`, `new_level`, `stars`, `chest_last`, `chest_number` FROM `user_info_1` WHERE (uid = ?) LIMIT 1 []interface {}{57}
