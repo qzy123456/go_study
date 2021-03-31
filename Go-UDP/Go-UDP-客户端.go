@@ -1,10 +1,11 @@
-package Go_UDP
+package main
 
 
 import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 )
 
 func main() {
@@ -19,22 +20,29 @@ func main() {
 		return
 	}
 
+	// 循环读取消息
+	for {
+		select {
+		case <-time.After(time.Second * 20):
+			for i:=0;i<10;i++{
+				// 发送数据
+				_,err := conn.Write([]byte(fmt.Sprintf("udp testing:%v",i)))
+				if err != nil {
+					fmt.Printf("Send data failed,err:",err)
+					return
+				}
 
-	for i:=0;i<10;i++{
-		// 发送数据
-		_,err := conn.Write([]byte(fmt.Sprintf("udp testing:%v",i)))
-		if err != nil {
-			fmt.Printf("Send data failed,err:",err)
-			return
+				//接收数据
+				result := make([]byte,1024)
+				n,remoteAddr,err := conn.ReadFromUDP(result)
+				if err != nil{
+					fmt.Printf("Read from udp server failed ,err:",err)
+					return
+				}
+				fmt.Printf("Recived msg from %s, data:%s \n",remoteAddr,string(result[:n]))
+			}
 		}
-
-		//接收数据
-		result := make([]byte,1024)
-		n,remoteAddr,err := conn.ReadFromUDP(result)
-		if err != nil{
-			fmt.Printf("Read from udp server failed ,err:",err)
-			return
-		}
-		fmt.Printf("Recived msg from %s, data:%s \n",remoteAddr,string(result[:n]))
 	}
+
+
 }

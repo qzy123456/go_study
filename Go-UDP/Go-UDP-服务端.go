@@ -1,4 +1,4 @@
-package Go_UDP
+package main
 
 import (
 	"fmt"
