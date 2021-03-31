@@ -56,7 +56,7 @@ func main() {
 	defer socket.Close()
 
 	// ping
-	 go ping()
+	 //go ping()
 
 	// 处理
 	for {
@@ -81,24 +81,24 @@ func main() {
 			log.Println("touser_list_data:", hex.EncodeToString(touser_list_data))
 
 			// 构建在线的用户信息列表
-			user_list_data := make([]byte, 0, 100)
-			user_list_data = append(user_list_data, CMD_LIST_RES)
+			userListData := make([]byte, 0, 100)
+			userListData = append(userListData, CMD_LIST_RES)
 
 			// 通知所有在线用户,有新用户上线
 			for _, touser := range users {
 				// 添加在线用户信息到列表
 				// user_list_data = append(user_list_data, touser.IP...)
-				user_list_data = append(user_list_data, 0, 0, 0, 0, 0, 0)
-				copy(user_list_data[len(user_list_data)-6:], touser.IP)
-				binary.LittleEndian.PutUint16(user_list_data[len(user_list_data)-2:], uint16(touser.Port))
+				userListData = append(userListData, 0, 0, 0, 0, 0, 0)
+				copy(userListData[len(userListData)-6:], touser.IP)
+				binary.LittleEndian.PutUint16(userListData[len(userListData)-2:], uint16(touser.Port))
 
 				// 给在线用户发送数据
 				socket.WriteToUDP(touser_list_data, touser)
 			}
 
 			// 给新上限用户发送在线用户的列表
-			log.Println("user_list_data:", hex.EncodeToString(user_list_data))
-			socket.WriteToUDP(user_list_data, addr)
+			log.Println("user_list_data:", hex.EncodeToString(userListData))
+			socket.WriteToUDP(userListData, addr)
 
 			// 将新用户存储
 			users = append(users, addr)
@@ -120,12 +120,12 @@ func main() {
 }
 
 func ping() {
-	ping_data := make([]byte, 0, 15)
-	ping_data = append(ping_data, CMD_PING, 0)
+	pingData := make([]byte, 0, 15)
+	pingData = append(pingData, CMD_PING, 0)
 
 	for {
 		for _, touser := range users {
-			socket.WriteToUDP(ping_data, touser)
+			socket.WriteToUDP(pingData, touser)
 		}
 
 		time.Sleep(5 * time.Second)

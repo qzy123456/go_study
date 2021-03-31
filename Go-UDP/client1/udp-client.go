@@ -71,12 +71,12 @@ PORT:
 	defer socket.Close()
 
 	// 上线
-	login_data := make([]byte, 0, 10)
-	login_data = append(login_data, CMD_LOGIN)
-	login_data = append(login_data, []byte("nickname")...)
+	loginData := make([]byte, 0, 10)
+	loginData = append(loginData, CMD_LOGIN)
+	loginData = append(loginData, []byte("nickname")...)
 
 	// 发送上线数据
-	_, err = socket.WriteToUDP(login_data, serverAddr)
+	_, err = socket.WriteToUDP(loginData, serverAddr)
 	if err != nil {
 		log.Println("发送数据失败!", err)
 		return
