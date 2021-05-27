@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func maxProit(price []int)int  {
+	var max  = 0
+	for i:=1;i<len(price) ;i++  {
+		if price[i] > price[i-1]{
+			max += price[i] - price[i-1]
+		}
+	}
+	return max
+}
+func main() {
+
+	price := []int{7,1,5,3,6,4}
+	fmt.Println(maxProit(price))
+}
