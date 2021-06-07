@@ -24,8 +24,27 @@ func min(a,b int)int  {
 	}
 	return b
 }
+//最大利润 = 第i天买入 - 最小买入
+func maxProit3(prices []int)int  {
+	var minPrice = prices[0]
+	var maxProfit = 0
+	for i := 0; i < len(prices); i++ {
+		// 当前价格是否是最小价格
+		if prices[i] < minPrice{
+			minPrice = prices[i]
+			continue
+		}
+		// 当前的利润
+		var localProfit = prices[i] - minPrice
+		if localProfit > maxProfit{
+			maxProfit = localProfit
+		}
+	}
+	return maxProfit
+}
 func main() {
 
 	price := []int{7,1,5,3,6,4}
 	fmt.Println(maxProit2(price))
+	fmt.Println(maxProit3(price))
 }

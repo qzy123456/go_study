@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-
+//贪婪匹配，无限买入卖出
 func maxProit(price []int)int  {
 	var max  = 0
 	for i:=1;i<len(price) ;i++  {
