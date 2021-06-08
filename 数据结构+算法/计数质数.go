@@ -85,7 +85,7 @@ func countPrimes4(n int) int {
 			fmt.Println("i=",i)
 			count++
 		}
-		for j := i + i; j < n; j += i {
+		for j := i * i; j < n; j += i {
 			fmt.Println("j=",j)
 			notPrime[j] = true
 		}
@@ -96,6 +96,6 @@ func countPrimes4(n int) int {
 func main()  {
 	//fmt.Println(countPrimes(6))
 	//fmt.Println(countPrimes2(6))
-	//fmt.Println(countPrimes3(6))
-	fmt.Println(countPrimes4(6))
+	fmt.Println(countPrimes3(10))
+	fmt.Println(countPrimes4(10))
 }
