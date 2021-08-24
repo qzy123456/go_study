@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-//合并成2个数组
+// 合并成2个数组
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	var i, j, k int
 	var m = len(nums1)
