@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	Key = "e4ad2122c3d2b2bce4ad2122c3d2b2bc"
-	Iv  = "57542fc19f98607c"
+	Key = "111111"
+	Iv  = "2222"
 )
 
 //func main() {
