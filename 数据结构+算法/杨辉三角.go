@@ -7,7 +7,6 @@ func generate(numRows int) [][]int {
 		return nil
 	}
 	yanghui := make([][]int,numRows)
-	fmt.Println(yanghui)
 	for i := 0; i < numRows; i++ {
 		// 此处需要对yanghui[i]进行make分配
 		yanghui[i] = make([]int,i+1)

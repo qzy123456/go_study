@@ -78,12 +78,34 @@ func longestPalindrome1(s string) string {
 	}
 	return s[pl : pr+1]
 }
+// 解法三 中心扩散法，时间复杂度 O(n^2)，空间复杂度 O(1)
+func longestPalindrome3(s string) string {
+	res := ""
+	for i := 0; i < len(s); i++ {
+		res = maxPalindrome(s, i, i, res)
+		res = maxPalindrome(s, i, i+1, res)
+	}
+	return res
+}
 
+func maxPalindrome(s string, i, j int, res string) string {
+	sub := ""
+	for i >= 0 && j < len(s) && s[i] == s[j] {
+		sub = s[i : j+1]
+		i--
+		j++
+	}
+	if len(res) < len(sub) {
+		return sub
+	}
+	return res
+}
 
 func main() {
 
-	str := "babad"
+	str := "babbad"
 	fmt.Println(longestPalindrome(str))
 	fmt.Println(longestPalindrome2(str))
 	fmt.Println(longestPalindrome1(str))
+	fmt.Println(longestPalindrome3(str))
 }
