@@ -44,7 +44,9 @@ func threeSum2(nums []int) [][]int {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
+		//第2个数
 		j := i + 1
+		//最后一个
 		z := len(nums) - 1
 		for z > j {
 			b := nums[j]
