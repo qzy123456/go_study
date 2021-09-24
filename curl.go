@@ -11,7 +11,13 @@ import (
 
 var Slice  = []int {1, 5, 10,}
 func GetData1() {
-	client := &http.Client{}
+	//设置超时
+	client := &http.Client{
+		Transport: &http.Transport{
+			ResponseHeaderTimeout: time.Second * 2,
+		},
+		Timeout:time.Second * 2,
+	}
 	resp, err := client.Get("http://api.map.baidu.com/place/v2/suggestion?query=广州市天河区正佳广场&region=广州&city_limit=true&output=json&ak=yX8nC9Qzpckek7lY9gGWmlD4TFcA2tzYx3")
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)

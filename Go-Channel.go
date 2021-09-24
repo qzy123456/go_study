@@ -25,3 +25,9 @@ func main() {
 	}
 	fmt.Println("str = ", str)
 }
+//子协程 i =  0
+//子协程 i =  1
+//子协程调用完毕。
+//这是判断channel true
+//str =  子协程干活儿了。
+//主协程结束。

@@ -1,30 +1,30 @@
 package main
 
 import (
-        "fmt"
+	"fmt"
 	"hash/crc32"
 	"runtime"
 	"time"
 )
 
 func says(s string) {
-        for i := 0; i < 5; i++ {
+	for i := 0; i < 5; i++ {
 
-                //time.Sleep(100 * time.Millisecond)
-                fmt.Println(s)
-        }
+		//time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
 }
 
 func main() {
-        go says("world")
-        runtime.Gosched()
-        //says("hello")
-        fmt.Println("hello")
-        //hash--crc32
+	go says("world")
+	runtime.Gosched()
+	//says("hello")
+	fmt.Println("hello")
+	//hash--crc32
 	crc := crc32.ChecksumIEEE([]byte("12144143fgdfsdafsdf"))
 	fmt.Println(crc)
 	fmt.Println(int(crc))
-	id := int(crc) % 4;
+	id := int(crc) % 4
 	fmt.Print(id)
 
 	go func() {
@@ -39,4 +39,3 @@ func main() {
 	var input string
 	fmt.Scanln(&input)
 }
-
