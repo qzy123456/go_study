@@ -9,6 +9,9 @@ func main()  {
 	s2 := append(s, 1)
 	fmt.Printf("%p\n", &s2)
 	fmt.Println(s, s2)
+    //0xc00008e000
+	//0xc000094000
+	//[] [1]
 
     //可直接修改 struct array/slice 成员。
     //ps 【3】这个长度还是要给，不然下面的下标赋值  会出错，说超出range index
@@ -18,14 +21,17 @@ func main()  {
 	ss := dd[:]
 	dd[1].x = 10
 	ss[2].x = 20
-	fmt.Println(dd)
-	fmt.Printf("%p, %p\n", &dd, &dd[0])
+	fmt.Println(dd,ss)  //[{0} {10} {20}] [{0} {10} {20}]
+	fmt.Printf("%p, %p\n", &dd, &dd[0]) //0xc000096000, 0xc000096000
 	//⼀一旦超出原 slice.cap 限制，就会重新分配底层数组，即便原数组并未填满。
 	data := [...]int{0, 1, 2, 3, 4, 10: 0}
 	s1 := data[:2:3]
 	s1 = append(s1, 100, 200) // ⼀一次 append 两个值，超出 s.cap 限制。
 	fmt.Println(s1, data)// 重新分配底层数组，与原数组⽆无关。
+	//[0 1 100 200] [0 1 2 3 4 0 0 0 0 0 0]
 	fmt.Println(&s1[0], &data[0]) // ⽐比对底层数组起始指针。
+	//0xc00009a000 0xc000098000
+
     //通常以 2 倍容量重新分配底层数组。在⼤大批量添加数据时，建议⼀一次性分配⾜足够⼤大的空 间，
     // 以减少内存分配和数据复制开销。
     // 或初始化⾜足够⻓长的 len 属性，改⽤用索引号进⾏行操 作。

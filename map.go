@@ -24,7 +24,7 @@ func main() {
     captial, ok := countryCapitalMap [ "美国" ] /*如果确定是真实的,则存在,否则不存在 */
     /*fmt.Println(captial) */
     /*fmt.Println(ok) */
-    if (ok) {
+    if ok {
         fmt.Println("美国的首都是", captial)
     } else {
         fmt.Println("美国的首都不存在")

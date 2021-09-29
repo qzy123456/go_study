@@ -6,7 +6,7 @@ import (
 	"net/url"
 )
 
-var hLock sync.Mutex;
+var hLock sync.Mutex
 
 func main() {
 	ch := make(chan int)
