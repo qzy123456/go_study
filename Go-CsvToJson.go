@@ -33,7 +33,6 @@ func ReadCSV(path *string) ([]byte, string) {
 
 	reader := csv.NewReader(csvFile)
 	content, _ := reader.ReadAll()
-
 	if len(content) < 1 {
 		log.Fatal("Something wrong, the file maybe empty or length of the lines are not the same")
 	}
