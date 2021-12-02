@@ -81,7 +81,7 @@ func main() {
 	}
 	wg.Wait()
 
-	if (true) {
+	if true {
 		defer fmt.Println(1)
 	} else {
 		defer fmt.Println(2)

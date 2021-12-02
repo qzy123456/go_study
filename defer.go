@@ -61,23 +61,19 @@ func fibonacci1() func() int {
 func main()  {
 	surroundingFuncEvaluatedNotInvoked(1)
 	noDeferFuncOrderWhenReturn()
-	deferFuncWithAnonymousReturnValue()
-	deferFuncWithNamedReturnValue()
-
+	fmt.Println(deferFuncWithAnonymousReturnValue()) //0
+	fmt.Println(deferFuncWithNamedReturnValue())   // 1
+  	//1.init=1
+	//4.init=1
+	//2.init=1
+	//3.init=2
+	//before : result = 0
+	//after : result = 1
+	//return : result = 1
+	//0
+	//1
 	f := fibonacci1()
 	for i := 0; i < 20; i++ {
 		fmt.Print(f(), " ")
-	}
-	fmt.Println()
-	strs := []string{"one", "two", "three"}
-	//这里主进程太快  需要睡一秒
-	for _, s := range strs {
-
-		go func(s string) {
-
-			fmt.Printf("%s ", s)
-
-		}(s)
-
 	}
 }

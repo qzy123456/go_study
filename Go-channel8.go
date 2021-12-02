@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	_"go-common 2/library/syscall"
-	_"os"
-	_"os/signal"
-	"time"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 //生产者  消费者
@@ -28,7 +27,7 @@ func main()  {
 	done := make(chan int)
 	go func() {
 		println("111")
-		//close(done) //关闭也是可以执行完的
+		//close(done) //关闭就会deadlock
 		done <- 1
 	}()
 	<-done
@@ -39,10 +38,9 @@ func main()  {
    go Producter(5,ch)
 
    go Consumer(ch)
-   //睡眠退出
-   time.Sleep(1*time.Second)
+
    //ctrl+c退出
-   // sig := make(chan os.Signal,1)
-    //signal.Notify(sig,syscall.SIGINT,syscall.SIGTERM)
-    //fmt.Println("tuichu",<-sig)
+    sig := make(chan os.Signal,1)
+    signal.Notify(sig,syscall.SIGINT,syscall.SIGTERM)
+    fmt.Println("tuichu",<-sig)
 }

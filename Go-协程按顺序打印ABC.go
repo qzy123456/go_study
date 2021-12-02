@@ -9,7 +9,7 @@ func main(){
 
 	wg:=sync.WaitGroup{}
 	chanA :=make(chan struct{},1)
-	chanB :=make(chan struct{},1)
+	chanB :=make(chan struct{},1)  //B和C可以无缓冲
 	chanC :=make(chan struct{},1)
 
 
