@@ -39,7 +39,40 @@ func main()  {
 	aa["name"] = 18
 	stru := UserAges{ages:aa}
 	fmt.Println(stru.Get("11"))
+	//下列报错是哪一行
+	var x interface{}
+	var y interface{} = []int{3, 5}
+	_ = x == x
+	_ = x == y
+	//_ = y == y  //comparing uncomparable type []int
+	f := F(5)
+	defer func() {
+		fmt.Println("第一个defer",f())  // 8
+	}()
+	defer fmt.Println("第二个defer",f()) // 6
+	i := f()
+	fmt.Println("defer结束",i) //7
+	var orange Orange
+	orange.Increase(10)
+	orange.Decrease(5)
+	fmt.Println(orange)
 }
+type Orange struct {
+	Quantity int
+}
+func (o *Orange) Increase(n int) {
+	o.Quantity += n }
+func (o *Orange) Decrease(n int) {
+	o.Quantity -= n }
+func (o *Orange) String() string {
+	return fmt.Sprintf("%#v", o.Quantity) }
+func F(n int) func() int {
+	return func() int {
+		n++
+		return n
+	}
+}
+
 func calc(index string, a, b int) int {
 	ret := a+ b
 	fmt.Println(index,a, b, ret)
@@ -106,3 +139,4 @@ func (ua *UserAges) Get(name string)int {
 	}
 	return -1
 }
+
