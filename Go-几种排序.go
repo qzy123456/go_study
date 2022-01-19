@@ -55,7 +55,7 @@ func SelectSort(values *[5]int) {
 		//fmt.Println(values)
 	}
 }
-//快速排序
+//快速排序，3路快排
 func quickSort(a []int, left int, right int) {
 	if left >= right {  //一定是left >= right
 		return
@@ -82,7 +82,33 @@ func quickSort(a []int, left int, right int) {
 	quickSort(a, start, left)
 	quickSort(a, right+1, stop)
 }
+//快速排序，普通
+func quickSort2(arr []int, start, end int) {
+	if start < end {
+		i, j := start, end
+		key := arr[(start+end)/2]
+		for i <= j {
+			for arr[i] < key {
+				i++
+			}
+			for arr[j] > key {
+				j--
+			}
+			if i <= j {
+				arr[i], arr[j] = arr[j], arr[i]
+				i++
+				j--
+			}
+		}
 
+		if start < j {
+			quickSort(arr, start, j)
+		}
+		if end > i {
+			quickSort(arr, i, end)
+		}
+	}
+}
 func main() {
 	arr := [5]int{1,43,5,94,90}
 	BubbleSort(&arr)
