@@ -25,10 +25,30 @@ func intersect(nums1 []int, nums2 []int) []int {
 	}
 	return temp
 }
+//未排序
+func intersect2(nums1 []int, nums2 []int) []int {
+	m0 := make(map[int]int)
+	//找到数组1中的每个元素的个数
+	for _, i := range nums1 {
+		m0[i] += 1
+	}
+	k := 0
+	for _, v := range nums2 {
+		//如果元素重叠(包含)
+		if m0[v] > 0 {
+			m0[v] -= 1
+			//这里是复用数组2切片，因为前面的都已经遍历过了，可以舍弃
+			nums2[k] = v
+			k++
+		}
+	}
+	return nums2[0:k]
+}
 
 func main() {
 	var nums1 = []int{4, 9, 5}
 	var nums2 = []int{9, 4, 9, 8, 4}
 
 	fmt.Println(intersect(nums1, nums2))
+	fmt.Println(intersect2(nums1, nums2))
 }
