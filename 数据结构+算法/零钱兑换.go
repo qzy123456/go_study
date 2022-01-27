@@ -52,7 +52,7 @@ func coinChange(coins []int, amount int) int {
 func coinChange2(coins []int, amount int) int {
 	sort.Ints(coins)
 	ret := make([]int, amount+1)
-	for k,_:=range(ret){
+	for k :=range ret{
 		ret[k] = amount+1
 	}
 	fmt.Println(ret) //[12 12 12 12 12 12 12 12 12 12 12 12]
@@ -75,6 +75,59 @@ func min(a, b int) int{
 		return b
 	}
 	return a
+}
+
+func CoinChange3(coins []int, amount int) int {
+	dp := make([]int, amount + 1)
+
+	for i := 1; i <= amount; i++{
+		dp[i] = i       // dp[i] 最大值为i
+		found := false  // 表示dp[i] 是否有效
+		for _, coin := range coins{
+			if coin <= i && dp[i-coin] >= 0{
+				dp[i] = min(dp[i], dp[i-coin] + 1)
+				found = true
+			}
+		}
+
+		if !found {
+			dp[i] = -1
+		}
+	}
+
+	return dp[amount]
+}
+
+//可以类比为上台阶问题，有3种面额的硬币{1,2,5}凑成11所用的最少的硬币个数，
+// 类比为每次只能上1个，2个或5个台阶，走到第11个台阶的走法
+//动态规划，设需要凑成的金额为amount，dp[i]表示凑成i金额所用最少的硬币数，
+// 则i的取值范围为1->amount
+//状态转义方程，dp[i] = min(dp[i-coins[j]]) + 1,
+// j的取值范围为0->len(conins),即需要遍历coins中的每一种硬币，找到最dp[i-coins[j]]小的值,
+// 然后再加1即为dp[i]
+func coinChange4(coins []int, amount int) int {
+	if amount == 0 {
+		return 0
+	}
+	var dp = make(map[int]int)
+	//初始化dp数组，组成每一种硬币面额所用的最少硬币数都为1
+	for i:=0; i<len(coins); i++ {
+		dp[coins[i]] = 1
+	}
+	for i:=1; i<=amount; i++ {
+		//拟定一个最值，若最值没有变化则说明不能凑成该面额
+		min := 99999
+		for j:=0; j<len(coins); j++ {
+			if i-coins[j] >= 0 && dp[i-coins[j]] < min{
+				min = dp[i-coins[j]]
+			}
+		}
+		dp[i] = min + 1
+	}
+	if dp[amount] > 99999 {
+		return -1
+	}
+	return dp[amount]
 }
 
 func main() {

@@ -31,7 +31,7 @@ func isValidSudoku(board [][]byte) bool {
 			// 判断9宫格内的数据是否重复
 			row := (i%3)*3 + j%3   //行
 			col := (i/3)*3 + j/3   //列
-			//fmt.Println(row,col)
+			//fmt.Println(row,col) //00 10 20 01 11 21 02 12 22
 			if board[row][col] != '.' {
 				fmt.Printf("j3: %d, num[j]: %v\n", j, string(board[row][col]))
 				if m3[board[row][col]] {

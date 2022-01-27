@@ -13,13 +13,14 @@ func lengthOfLIS(nums []int) int {
 	var dp []int
 	for _, num := range nums {
 		i := sort.SearchInts(dp, num) //min_index
+		fmt.Println(i)
 		if i == len(dp) {
 			dp = append(dp, num) //num 比dp中的元素都大 应该加到末尾
 		} else {
 			dp[i] = num //num加到dp【i】处
 		}
-		//fmt.Println(dp)
 	}
+	//fmt.Println(dp)
 	return len(dp)
 }
 

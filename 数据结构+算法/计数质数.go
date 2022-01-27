@@ -79,10 +79,10 @@ func countPrimes3(n int) int {
 func countPrimes4(n int) int {
 	notPrime := make([]bool,n)
 	count := 0
-    //fmt.Println(notPrime) [false false false false false false]
+    //fmt.Println(notPrime) //[false false false false false false]
 	for i := 2; i < n; i++ {
 		if notPrime[i] == false {
-			fmt.Println("i=",i)
+			//fmt.Println("i====",i)
 			count++
 		}
 		for j := i * i; j < n; j += i {

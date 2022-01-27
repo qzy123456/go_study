@@ -8,6 +8,7 @@ func firstMissingPositive(nums []int) int {
 	for _, v := range nums {
 		numMap[v] = v
 	}
+	//fmt.Println(numMap) //map[1:1 2:2 7:7 8:8 9:9 11:11 12:12]
 	for index := 1; index < len(nums)+1; index++ {
 		if _, ok := numMap[index]; !ok {
 			return index
@@ -17,6 +18,6 @@ func firstMissingPositive(nums []int) int {
 }
 
 func main() {
-   nums := []int{7,8,9,11,12}
+   nums := []int{1,2,7,8,9,11,12}
    fmt.Println(firstMissingPositive(nums))
 }
