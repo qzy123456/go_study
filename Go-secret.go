@@ -8,13 +8,13 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"strings"
 )
 
 const (
-	Key = "1vli6t6uko28hnr6"
-	Iv  = "ovdjuiaf3dogppdc"
+	Keys = "1vli6t6uko28hnr6"
+	iv   = "ovdjuiaf3dogppdc"
 )
-
 func main() {
 
 	str := `{
@@ -30,38 +30,38 @@ func main() {
      }
 }
 `
- //aes加密,并且base64之后的数据
-	hashData, _ := Hash(str, []byte(Key))
+	//aes加密,并且base64之后的数据
+	hashData, _ := Hash([]byte(str), []byte(Keys))
 	fmt.Println(hashData)
-   //验证解密,判断加密后的数据
-   str = hashData
-	unHashData, _ := unHash(str, []byte(Key))
+	//验证解密,判断加密后的数据
+	str = hashData
+	unHashData, _ := UnHash(str, []byte(Keys))
 	fmt.Println(string(unHashData))
 
 }
 //验证hash
-func Hash(encodeStr string, key []byte) (string, error)  {
+func Hash(encodeStr []byte, key []byte) (string, error) {
 	hashData, _ := AesEncrypt(encodeStr, []byte(key))
 	//拼接密码 sha256
-	sha256Data := getHmacCode(hashData,[]byte(key)) + hashData
-	return sha256Data,nil
+	sha256Data := strings.ToUpper(string(getHmacCode(hashData, []byte(key)))) + string(hashData)
+	return sha256Data, nil
 }
 
 //验证unhash
-func unHash(decodeStr string, key []byte) ([]byte, error) {
-	hash :=decodeStr[0:64]
+func UnHash(decodeStr string, key []byte) ([]byte, error) {
+	hash := decodeStr[0:64]
 	reData := decodeStr[64:]
-	fmt.Println(reData)
 	//加密后的数据，和加密前的数据作比较，看看是否正常，不正常就返回错误
-	newHash := getHmacCode(reData,[]byte(key))
-	if hash != newHash{
+	newHash := strings.ToUpper(string(getHmacCode(reData, []byte(key))))
+	if hash != newHash {
 		fmt.Println("验证出错")
 	}
-	unHashData, _ := AesDecrypt(reData, []byte(key))
-	return unHashData,nil
+	unHashData, error := AesDecrypt(reData, []byte(key))
+	return unHashData, error
 }
+
 //AES 128 256加密
-func AesEncrypt(encodeStr string, key []byte) (string, error) {
+func AesEncrypt(encodeStr []byte, key []byte) (string, error) {
 	encodeBytes := []byte(encodeStr)
 	//根据key 生成密文
 	block, err := aes.NewCipher(key)
@@ -71,13 +71,12 @@ func AesEncrypt(encodeStr string, key []byte) (string, error) {
 
 	blockSize := block.BlockSize()
 	encodeBytes = PKCS5Padding(encodeBytes, blockSize)
-	blockMode := cipher.NewCBCEncrypter(block, []byte(Iv))
+	blockMode := cipher.NewCBCEncrypter(block, []byte(iv))
 	crypted := make([]byte, len(encodeBytes))
 	blockMode.CryptBlocks(crypted, encodeBytes)
 
 	return base64.StdEncoding.EncodeToString(crypted), nil
 }
-
 
 //AES 128 256解密
 func AesDecrypt(decodeStr string, key []byte) ([]byte, error) {
@@ -90,27 +89,43 @@ func AesDecrypt(decodeStr string, key []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	blockMode := cipher.NewCBCDecrypter(block, []byte(Iv))
+	blockMode := cipher.NewCBCDecrypter(block, []byte(iv))
 	origData := make([]byte, len(decodeBytes))
 
 	blockMode.CryptBlocks(origData, decodeBytes)
 	origData = PKCS5UnPadding(origData)
 	return origData, nil
 }
+
 //填充，解填充
+//func PKCS5UnPadding(origData []byte) []byte {
+//	length := len(origData)
+//	unpadding := int(origData[length-1])
+//	return origData[:(length - unpadding)]
+//}
+////填充，解填充
+//func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
+//	padding := blockSize - len(ciphertext)%blockSize
+//	//填充
+//	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
+//
+//	return append(ciphertext, padtext...)
+//}
+//填充，解填充（客户端默认用0填充，而不是补位填充）
 func PKCS5UnPadding(origData []byte) []byte {
-	length := len(origData)
-	unpadding := int(origData[length-1])
-	return origData[:(length - unpadding)]
+	return bytes.TrimFunc(origData,
+		func(r rune) bool {
+			return r == rune(0)
+		})
 }
-//填充，解填充
+
+//填充，解填充（客户端默认用0填充，而不是补位填充）
 func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
 	padding := blockSize - len(ciphertext)%blockSize
-	//填充
-	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
-
+	padtext := bytes.Repeat([]byte{0}, padding) //用0去填充
 	return append(ciphertext, padtext...)
 }
+
 //sha256加密跟PHP一样
 func getHmacCode(message string, secret []byte) string {
 	h := hmac.New(sha256.New, secret)
@@ -118,3 +133,4 @@ func getHmacCode(message string, secret []byte) string {
 	sha := hex.EncodeToString(h.Sum(nil))
 	return sha
 }
+
