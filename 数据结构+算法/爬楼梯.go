@@ -65,11 +65,23 @@ func climbStairs3(n int) int {
 
 	return dp[n%2]
 }
+//斐波那契数列
+func climbStairs4(n int) int {
+	sli := []int{1, 2, 3}
+	if n <= 3 {
+		return sli[n-1]
+	}
+	for i := 3; i < n; i++ {
+		sli = append(sli, sli[i-1]+sli[i-2])
+	}
+	return sli[len(sli)-1]
+}
 func main() {
    n := climbStairs(5)
    fmt.Println(n)
    fmt.Println(climbStairs1(5))
    fmt.Println(climbStairs2(5))
    fmt.Println(climbStairs3(5))
+   fmt.Println(climbStairs4(5))
 
 }

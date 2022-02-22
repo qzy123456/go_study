@@ -5,7 +5,7 @@ import "fmt"
 func plusOne1(digits []int) []int {
 	carry := 1
 	for i := len(digits) - 1; i >= 0; i-- {
-		fmt.Println(carry)
+		fmt.Println((digits[i]+carry)/10, (digits[i]+carry)%10)
 		carry, digits[i] = (digits[i]+carry)/10, (digits[i]+carry)%10
 	}
 

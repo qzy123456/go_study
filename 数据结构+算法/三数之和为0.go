@@ -84,7 +84,7 @@ func threeSum3(nums []int) [][]int {
 		return res
 	}
 	// 开始循环第一个固定值
-	for index, _ := range nums {
+	for index := range nums {
 		// 如果固定位的值已经大于0，因为已经排好序了，后面的两个指针对应的值也肯定大于0，则和不可能为0，所以返回
 		if nums[index] > 0 {
 			return res

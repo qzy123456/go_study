@@ -15,7 +15,6 @@ func merge2(nums1 []int, m int, nums2 []int, n int) {
 	// 指向 num2 最后一个元素
 	j := n -1
 	for i >= 0 && j >= 0 {
-		fmt.Println(i,j)
 		// 从右向左比较值的大小
 		if nums1[i] > nums2[j] {
 			nums1[max] = nums1[i]
@@ -29,21 +28,14 @@ func merge2(nums1 []int, m int, nums2 []int, n int) {
 		// max 向左移动
 		max --
 	}
-	//其实下面这2个循环可以省略。因为num1的数量明显要长，所以每次都会走到 i>=0 这个里面,
-	//但其实不用处理i，因为数据是有序的，j>=0也不用处理，因为 num1 > num2,所以理论上 j>= 0不会出现
-	// 如果 i 越界了,num1越界了，将 nums2 剩余的元素赋值到 num1 的 [0,m] 之间
-	for j >= 0 {
-		nums1[max] = nums2[j]
-		max--
-		j--
-	}
-	// 如果 j 越界了，
-	for i >= 0 {
-		fmt.Println("我是i",i)
-		nums1[max] = nums1[i]
-		max--
-		i--
-	}
+	//其实下面这个循环可以省略。因为num1的数量明显要长，所以每次都会走到 i>=0 这个里面,
+	//但其实不用处理i，因为数据是有序的
+	//for i >= 0 {
+	//	fmt.Println("我是i",i)
+	//	nums1[max] = nums1[i]
+	//	max--
+	//	i--
+	//}
 }
 func merge(nums1 []int,m int,nums2 []int,n int) {
 	//把nums1复制到temp中
@@ -81,7 +73,7 @@ func merge3(nums1 []int,m int,nums2 []int,n int) {
 }
 
 func main()  {
-	nums1 := []int{1,2,3}
+	nums1 := []int{1,2,3,0,0,0}
 	m := 3
 	nums2 := []int{2,5,6}
 	n := 3

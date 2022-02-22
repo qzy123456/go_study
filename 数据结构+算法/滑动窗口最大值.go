@@ -6,14 +6,16 @@ import "fmt"
 //你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。
 //返回滑动窗口中的最大值所构成的数组。
 func maxSlidingWindow(nums []int, k int) []int {
-	l1 := len(nums) //数组长度
+	length := len(nums) //数组长度
 	index := 0      //起始下标
 	ret := make([]int, 0) //返回值
-	for index < l1 {
+	for index < length {
 		m := nums[index]
-		if index > l1 - k {
+		//不够分组了
+		if index > length - k {
 			break
 		}
+		//第二个开始比较，k个为一组。找出最大值
 		for j := index + 1; j < index + k; j++ {
 			if m < nums[j] {
 				m = nums[j]

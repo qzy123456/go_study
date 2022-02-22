@@ -23,7 +23,19 @@ func removeDuplicate(nums []int)int  {
 	return  i+1
 }
 
+func removeDuplicates(nums []int) int {
+	for i := 0; i < len(nums); {
+		if i > 0 && nums[i] == nums[i-1] {
+			nums = append(nums[:i], nums[i+1:]...)
+		} else {
+			i++
+		}
+	}
+	return len(nums)
+}
+
 func main() {
 	nums := []int{0,1,2,2,3,3,3,4}
 	fmt.Println(removeDuplicate(nums))
+	fmt.Println(removeDuplicates([]int{0,1,2,2,3,3,3,4}))
 }

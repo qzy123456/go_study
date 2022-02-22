@@ -8,7 +8,7 @@ func maxSubArray(nums []int) int {
 	var res = nums[0] //默认第一个数为最大和
 	var sum = 0       //sum为前面nums【i】前面元素的最大和
 	for i := 0; i < len(nums); i++ {
-		fmt.Println(sum + nums[i], nums[i])
+		//fmt.Println(sum + nums[i], nums[i])
 		//-2 -2   -2 +0，-2 ==》-2
 		//-1 1    -2+1 ，1  ==》1
 		//-2 -3   -3+1，-3  ==》-2
@@ -32,7 +32,23 @@ func max(a, b int) int {
 	return b
 }
 
+//动态规划解法
+func maxSubArrayKMP(nums []int) int {
+	max_sum := nums[0]
+	for i := 1; i < len(nums); i++ {
+		if nums[i - 1] > 0 {
+			nums[i] += nums[i - 1]
+		}
+		if nums[i] > max_sum {
+			max_sum = nums[i]
+		}
+	}
+	return max_sum
+}
+
+
 func main() {
 	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
 	fmt.Println(maxSubArray(nums))
+	fmt.Println(maxSubArrayKMP(nums))
 }
