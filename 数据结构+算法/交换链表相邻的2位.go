@@ -29,6 +29,37 @@ func swapPairs1(head *ListNode) *ListNode {
 	return second
 }
 
+func swapPairs2(head *ListNode) *ListNode {
+	if (head == nil) || (head.Next == nil) {
+		return head
+	}
+	tmpHead := &ListNode{0, nil}
+	tmpHead.Next = head
+	pre, cur, nex := tmpHead, head, head.Next
+	for (cur != nil) && (nex != nil) {
+		cur.Next = nex.Next
+		nex.Next = cur
+		pre.Next = nex
+		pre = cur
+		cur = cur.Next
+		if cur == nil {
+			break
+		}
+		nex = cur.Next
+	}
+	return tmpHead.Next
+}
+
+func swapPairs3(head *ListNode) *ListNode {
+	if (head == nil) || (head.Next == nil) {
+		return head
+	}
+	nextNode := head.Next
+	head.Next = swapPairs3(nextNode.Next)
+	nextNode.Next = head
+	return nextNode
+}
+
 func main() {
 	var n1 = &ListNode{}
 	n1.Val = 1
@@ -36,7 +67,7 @@ func main() {
 		Next: &ListNode{Val: 6},
 	}}
 	//res := swapParis(n1)
-	res := swapPairs1(n1)
+	res := swapPairs3(n1)
 	for res != nil {
 		fmt.Println(res.Val)
 		res = res.Next

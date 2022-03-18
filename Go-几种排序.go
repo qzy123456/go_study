@@ -25,6 +25,7 @@ func InsertSort(arr *[5]int) {
 		index := i - 1
 
 		for index >= 0 && arr[index] > val {
+			//fmt.Println(index,arr[index],val)
 			arr[index+1] = arr[index]
 			index--
 		}
