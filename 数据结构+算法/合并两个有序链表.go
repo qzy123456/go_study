@@ -29,7 +29,7 @@ func mergeTowLists2(l1 ,l2 *ListNode)*ListNode  {
 		return l1
 	}
 	//设置一个虚拟头节点
-	head := &ListNode{Next:l1}
+	head := &ListNode{}
 	cur := head
 	for l1 != nil && l2 !=nil{
 		if l1.Val >= l2.Val{

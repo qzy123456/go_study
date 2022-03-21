@@ -22,44 +22,54 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		}
 		node = node.Next
 	}
-	//fmt.Printf("%+v\n",node) //4
+	//fmt.Printf("%+v\n",node) //3
 	newHead := reverse(head, node)
 	head.Next = reverseKGroup(node, k)
 	return newHead
 }
 
 func reverse(first *ListNode, last *ListNode) *ListNode {
+	//fmt.Println("刚进来",first,last)  //1,3
 	prev := last
-	//fmt.Printf("%+v\n",first) //1
-	//fmt.Printf("%#v\n",last)  //4
 	for first != last {
-		//fmt.Printf("%#v\n",first) // 1 2 3
-		tmp := first.Next  //2
-		first.Next = prev  //4
-		prev = first    //1
-		first = tmp     //2
+		tmp := first.Next   // 2
+		first.Next = prev
+		//fmt.Println("2",first)
+		prev = first
+		first = tmp
 	}
 	return prev
 }
 
 func reverseKGroup2(head *ListNode, k int) *ListNode {
-	dummy, curr, tmp, len := &ListNode{Next: head}, head, &ListNode{Next: nil}, 0
-	prev := dummy
-	for head != nil {
-		len++
-		head = head.Next
+	length:=0
+	pre:=head
+	//计算链表长度
+	for pre!=nil{
+		length++
+		pre = pre.Next
 	}
-	head = dummy.Next
-	for i := 0; i < len/k; i++ {
-		for j := 0; j < k-1; j++ {
-			// 123   213   321
-			tmp = curr.Next // 2
-			curr.Next = tmp.Next
-			tmp.Next = prev.Next // 213
-			prev.Next = tmp      //321
+
+	//k个一组的次数
+	time:=length/k
+	//临时节点
+	dummy:=new(ListNode)
+	dummy.Next = head
+	pre = dummy    //每一组前面的数，头插法，每次都把move放在pre后面
+	var nexthead,move *ListNode
+
+	for i:=0;i<time;i++{
+		nexthead = pre.Next    //每个k长度的开头，逐渐变为末尾
+		move = nexthead.Next//第二个，不断向后移动，把move插入到pre后面，
+		for j:=0;j<k-1;j++{
+			nexthead.Next = move.Next
+			move.Next = pre.Next
+			pre.Next = move
+			move = nexthead.Next
 		}
-		prev = curr
-		curr = prev.Next
+		//经过头插法，nexthead逐渐变为结尾，结束一轮循环时，nexthead变为结尾，是下一个k长度的pre，
+		pre = nexthead  //下一个k同样的方式，头插法放pre后面
+
 	}
 	return dummy.Next
 }
@@ -74,7 +84,7 @@ func main() {
 								Next: &ListNode{
 											Val: 4},
 	}}
-	res := reverseKGroup(n1,3)
+	res := reverseKGroup(n1,2)
 	//res := reverseKGroup2(n1, 3)
 	for res != nil {
 		fmt.Println(res.Val)

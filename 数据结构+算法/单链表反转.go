@@ -19,19 +19,26 @@ func PrintNodeList(head *Node){
 }
 
 func ReverseNodeList1(head *Node)*Node{
-	var next *Node = nil
-	var prev *Node = nil
-	var curr = head
-
-	for curr!=nil{
-		next = curr.Next
-		curr.Next = prev
-
-		prev = curr
-		curr = next
+	//定义一个空节点，用于返回
+	var newHead *Node
+	//当前节点
+	now := head
+	for now != nil {
+		//临时节点
+		temp := now
+		fmt.Println("1",temp)
+		//下一个
+		now = now.Next
+		fmt.Println("2",now)
+		//相当于断链 1-nil ，2-1-nil ，3-2-1-nil
+		temp.Next = newHead
+		fmt.Println("3",newHead)
+		//把新节点返回
+		newHead = temp
+		fmt.Println("4",newHead)
 	}
 
-	return prev
+	return newHead
 }
 //反转链表的实现
 //那么这道题其实就是把指针指向前一个节点

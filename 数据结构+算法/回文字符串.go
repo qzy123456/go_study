@@ -35,7 +35,6 @@ func longestPalindrome2(s string) string {
 			}
 		}
 	}
-
 	return res
 }
 
@@ -101,11 +100,40 @@ func maxPalindrome(s string, i, j int, res string) string {
 	return res
 }
 
+func longestPalindrome4(s string) string {
+	if s == "" {
+		return ""
+	}
+	if palindrome(s) || len(s) < 2 {
+		return s
+	}
+
+	max := 0
+	rst := ""
+
+	for i := 0; i < len(s); i++ {
+		for j:=len(s);j>i+1;j--{
+			tmp := s[i:j]
+			//fmt.Println(tmp)
+			if palindrome(tmp) {
+				if max < len(tmp) {
+					max = len(tmp)
+					rst = tmp
+				}
+			}
+		}
+	}
+
+	if rst == "" {
+		return s[0:1]
+	}
+	return rst
+}
 func main() {
 
-	str := "babbad"
-	fmt.Println(longestPalindrome(str))
+	str := "bababad"
+	///fmt.Println(longestPalindrome(str))
 	fmt.Println(longestPalindrome2(str))
-	fmt.Println(longestPalindrome1(str))
-	fmt.Println(longestPalindrome3(str))
+	//fmt.Println(longestPalindrome1(str))
+	//fmt.Println(longestPalindrome3(str))
 }
