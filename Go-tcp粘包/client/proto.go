@@ -91,13 +91,13 @@ func (buffer *Buffer) checkMsg(msg chan string) (error) {
 	if err1 != nil { // 一个消息头都不够， 跳出去继续读吧, 但是这不是一种错误
 		return nil
 	}
-	if (string(headBuf[:len(buffer.header)]) == buffer.header) { // 判断消息头正确性
+	if string(headBuf[:len(buffer.header)]) == buffer.header { // 判断消息头正确性
 
 	} else {
 		return errors.New("消息头部不正确")
 	}
 	contentSize := int(binary.BigEndian.Uint32(headBuf[len(buffer.header):]))
-	if (buffer.len() >= contentSize-HEADER_LENG) { // 一个消息体也是够的
+	if buffer.len() >= contentSize-HEADER_LENG { // 一个消息体也是够的
 		contentBuf := buffer.read(HEADER_LENG, contentSize) // 把消息读出来，把start往后移
 		msg <- string(contentBuf)
 		// 递归，看剩下的还够一个消息不
