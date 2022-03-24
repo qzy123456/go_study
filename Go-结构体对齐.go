@@ -1,8 +1,10 @@
 package main
+
 import (
-	"unsafe"
 	"fmt"
+	"unsafe"
 )
+
 //对于结构体的每个字段，我们先来认识一下如下4个概念：
 //对齐宽度
 //本身所占字节数
@@ -30,29 +32,30 @@ type s2 struct {
 func main() {
 	var s st
 	fmt.Println("st")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s))
-	fmt.Println("本身大小：", unsafe.Sizeof(s))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s)) //8
+	fmt.Println("本身大小：", unsafe.Sizeof(s))  //16
 	fmt.Println("f1")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s.f1))
-	fmt.Println("本身大小：", unsafe.Sizeof(s.f1))
-	fmt.Println("偏 移 量：", unsafe.Offsetof(s.f1))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s.f1))   //8
+	fmt.Println("本身大小：", unsafe.Sizeof(s.f1))    //8
+	fmt.Println("偏 移 量：", unsafe.Offsetof(s.f1)) //0
 	fmt.Println("f2")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s.f2))
-	fmt.Println("本身大小：", unsafe.Sizeof(s.f2))
-	fmt.Println("偏 移 量：", unsafe.Offsetof(s.f2))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s.f2))   //1
+	fmt.Println("本身大小：", unsafe.Sizeof(s.f2))    //1
+	fmt.Println("偏 移 量：", unsafe.Offsetof(s.f2)) //8
 	var s2 s2
 	fmt.Println("s2")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s2))
-	fmt.Println("本身大小：", unsafe.Sizeof(s2))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s2)) //8
+	fmt.Println("本身大小：", unsafe.Sizeof(s2))  //16
 	fmt.Println("s2.f1")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s2.f1))
-	fmt.Println("本身大小：", unsafe.Sizeof(s2.f1))
-	fmt.Println("偏 移 量：", unsafe.Offsetof(s2.f1))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s2.f1))   //1
+	fmt.Println("本身大小：", unsafe.Sizeof(s2.f1))    //1
+	fmt.Println("偏 移 量：", unsafe.Offsetof(s2.f1)) //0
 	fmt.Println("s2.f2")
-	fmt.Println("对齐宽度：", unsafe.Alignof(s2.f2))
-	fmt.Println("本身大小：", unsafe.Sizeof(s2.f2))
-	fmt.Println("偏 移 量：", unsafe.Offsetof(s2.f2))
+	fmt.Println("对齐宽度：", unsafe.Alignof(s2.f2))   //8
+	fmt.Println("本身大小：", unsafe.Sizeof(s2.f2))    //8
+	fmt.Println("偏 移 量：", unsafe.Offsetof(s2.f2)) //8
 }
+
 /*
 st
 对齐宽度： 8
