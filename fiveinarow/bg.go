@@ -1,8 +1,11 @@
-package fiveinarow
+package main
 
 import(
+	"fmt"
+	"math/rand"
 	"sort"
 	"math"
+	"time"
 )
 const(
 	Vertical = 100
@@ -235,5 +238,29 @@ func (inat *Allinat)AddCoordinat(coor Coordinat) (bool,[]Coordinat) {
 	}
 	return true,allfive
 	
+}
+
+func main() {
+	for k:=0;k<100;k++{
+		c := Allinat{}
+		chess := Coordinat{}
+		for i:=0; i<10; i++{
+			if i % 2 == 0{
+				chess.Color = "white"
+			}else{
+				chess.Color = "black"
+			}
+			rand.Seed(time.Now().UnixNano())
+			chess.X = rand.Intn(5)
+			chess.Y = rand.Intn(5)
+			xx,x := c.AddCoordinat(chess)
+			fmt.Println(chess)
+			if xx == true{
+				fmt.Printf("%#v\n\n",x)
+				break
+			}
+
+		}
+	}
 }
 

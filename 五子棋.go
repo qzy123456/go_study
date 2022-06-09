@@ -14,6 +14,7 @@ const (
 	NilHand   hand = iota //空白
 	BlackHand             //黑手
 	WhiteHand             //白手
+	Win       int = 5
 )
 
 func (h hand) Str() string {
@@ -36,28 +37,28 @@ type Grid struct {
 	top    *Grid
 	bottom *Grid
 }
-
+//左上
 func (g *Grid) LeftTop() *Grid {
 	if g.left != nil {
 		return g.left.top
 	}
 	return nil
 }
-
+//左下
 func (g *Grid) LeftBottom() *Grid {
 	if g.left != nil {
 		return g.left.bottom
 	}
 	return nil
 }
-
+//右上
 func (g *Grid) RightTop() *Grid {
 	if g.right != nil {
 		return g.right.top
 	}
 	return nil
 }
-
+//右下
 func (g *Grid) RightBottom() *Grid {
 	if g.right != nil {
 		return g.right.bottom
@@ -77,7 +78,7 @@ func (g *Grid) Set(row, col int, value hand) {
 	return
 }
 
-//获取向右偏移x位的指针
+//获取向右偏移x位的指针（未使用）
 func (g *Grid) RightOffset(col int) *Grid {
 	var tmp *Grid
 	tmp = g
@@ -98,7 +99,7 @@ func (g *Grid) RightOffset(col int) *Grid {
 	return nil
 }
 
-//获取向下偏移y位的指针
+//获取向下偏移y位的指针（未使用）
 func (g *Grid) BottomOffset(row int) *Grid {
 	var tmp *Grid
 	tmp = g
@@ -140,7 +141,7 @@ func (g *Grid) GetColLen() int {
 	}
 	return col
 }
-
+//打印棋盘布局
 func (g *Grid) Print() {
 	fmt.Println("当前棋盘布局为:")
 	var colNumStr = ""
@@ -257,8 +258,10 @@ func (g *Grid) Count() (black, white int) {
 
 //检查是否已分出胜负
 func (g *Grid) IsWin(row, col int) bool {
+	//获取落子点的坐标
 	offset := g.Offset(row, col)
 	h := offset.value
+	//没下
 	if h == NilHand {
 		return false
 	}
@@ -266,6 +269,7 @@ func (g *Grid) IsWin(row, col int) bool {
 	count := 1
 	left := offset.left
 	right := offset.right
+	//检测左边
 	for {
 		if left == nil {
 			break
@@ -277,6 +281,7 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		left = left.left
 	}
+	//检测右边
 	for {
 		if right == nil {
 			break
@@ -288,12 +293,12 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		right = right.right
 	}
-	if count >= 4 {
+	if count >= Win {
 		switch h {
 		case WhiteHand:
-			fmt.Println("白手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("白手赢-左右", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		case BlackHand:
-			fmt.Println("黑手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("黑手赢-左右", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		}
 		return true
 	}
@@ -302,6 +307,7 @@ func (g *Grid) IsWin(row, col int) bool {
 	count = 1
 	top := offset.top
 	bottom := offset.bottom
+	//上
 	for {
 		if top == nil {
 			break
@@ -313,6 +319,7 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		top = top.top
 	}
+	//下
 	for {
 		if bottom == nil {
 			break
@@ -324,12 +331,12 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		bottom = bottom.bottom
 	}
-	if count >= 4 {
+	if count >= Win {
 		switch h {
 		case WhiteHand:
-			fmt.Println("白手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("白手赢-上下", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		case BlackHand:
-			fmt.Println("黑手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("黑手赢-上下", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		}
 		return true
 	}
@@ -338,6 +345,7 @@ func (g *Grid) IsWin(row, col int) bool {
 	count = 1
 	leftTop := offset.LeftTop()
 	rightBottom := offset.RightBottom()
+	//左上
 	for {
 		if leftTop == nil {
 			break
@@ -349,6 +357,7 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		leftTop = leftTop.LeftTop()
 	}
+	//右下
 	for {
 		if rightBottom == nil {
 			break
@@ -360,12 +369,12 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		rightBottom = rightBottom.RightBottom()
 	}
-	if count >= 4 {
+	if count >= Win {
 		switch h {
 		case WhiteHand:
-			fmt.Println("白手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("白手赢-左斜边", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		case BlackHand:
-			fmt.Println("黑手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("黑手赢-左斜边", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		}
 		return true
 	}
@@ -374,6 +383,7 @@ func (g *Grid) IsWin(row, col int) bool {
 	count = 1
 	rightTop := offset.RightTop()
 	leftBottom := offset.LeftBottom()
+	//右上
 	for {
 		if rightTop == nil {
 			break
@@ -385,6 +395,7 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		rightTop = rightTop.RightTop()
 	}
+	//左下
 	for {
 		if leftBottom == nil {
 			break
@@ -396,12 +407,12 @@ func (g *Grid) IsWin(row, col int) bool {
 		}
 		leftBottom = leftBottom.LeftBottom()
 	}
-	if count >= 4 {
+	if count >= Win {
 		switch h {
 		case WhiteHand:
-			fmt.Println("白手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("白手赢-右斜边", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		case BlackHand:
-			fmt.Println("黑手赢", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
+			fmt.Println("黑手赢-右斜边", fmt.Sprintf("最后一个落子点为(row:%d,col:%d)", row, col))
 		}
 		return true
 	}
@@ -495,11 +506,12 @@ func GameOne(row, col int) {
 		}
 		//规定偶数为: 黑手
 		h := grid.GetEmptyLastRow(rand.Intn(grid.GetColLen()) + 1)
-		if h == nil {
-		} else if i%2 == 0 {
-			h.value = BlackHand
-		} else {
-			h.value = WhiteHand
+		if h != nil {
+			if i%2 == 0 {
+				h.value = BlackHand
+			} else {
+				h.value = WhiteHand
+			}
 		}
 		i++
 	}
@@ -514,9 +526,9 @@ type XY struct {
 func GameTwo(row, col int) {
 	/*
 		游戏规则:(和我们平时玩的规则一样)
-			1. 一行连续4个子
-			2. 一列连续4个子
-			3. 对角线连续4个子
+			1. 一行连续5个子
+			2. 一列连续5个子
+			3. 对角线连续5个子
 			4. 棋盘被完全填满,还未出现胜负,则平局
 	*/
 	grid := InitGrid(row, col, &Grid{})
@@ -530,14 +542,11 @@ func GameTwo(row, col int) {
 			loop++
 		}
 	}
-
+	//fmt.Println(xy)
 	rand.Seed(time.Now().Unix())
 	p := XY{1, 1}
 	i := 0
 	for {
-		//if grid.IsFull() {
-		//	break
-		//}
 		if grid.IsWin(p.row, p.col) {
 			grid.Print()
 			break
@@ -577,8 +586,8 @@ func main() {
 	//空棋盘
 	grid.Print()
 
-	TestGrid(6, 7)
-	GameOne(6, 7)
-	GameTwo(20, 20)
+	//TestGrid(6, 7)
+	//GameOne(6, 7)
+	GameTwo(10, 10)
 }
 
