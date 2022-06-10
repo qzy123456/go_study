@@ -197,39 +197,6 @@ func (g *Grid) Offset(row, col int) *Grid {
 	return nil
 }
 
-//获取某列最后一行的棋子的指针
-func (g *Grid) GetLastRow(col int) *Grid {
-	offset := g.Offset(1, col)
-	for row := 1; row <= g.GetRowLen(); row++ {
-		if row == g.GetRowLen() {
-			return offset
-		}
-		offset = offset.bottom
-	}
-	return nil
-}
-
-//获取某一行的最后一列没有落棋子的指针
-func (g *Grid) GetEmptyLastRow(col int) *Grid {
-	if col <= 0 || col > g.GetColLen() {
-		return nil
-	}
-	last := g.GetLastRow(col)
-	if last == nil {
-		return nil
-	}
-	for row := 1; row <= g.GetRowLen(); row++ {
-		if last.value == NilHand {
-			return last
-		}
-		last = last.top
-		if last == nil {
-			return nil
-		}
-	}
-	return nil
-}
-
 //棋盘是否已满？
 func (g *Grid) IsFull() bool {
 	for row := 1; row <= g.GetRowLen(); row++ {
@@ -480,42 +447,6 @@ func TestGrid(row, col int) {
 	grid.Set(4, 6, WhiteHand)
 	grid.Print()
 }
-func GameOne(row, col int) {
-	/*
-		游戏规则:
-			两个玩家p1,p2轮流放黑白棋子,每个玩家随机抽取一列放入自己的棋子,棋子调入该列最后空白处(可理解为压栈),直到填满.
-			(如果该列已经满了,玩家此次机会失效,下一个玩家继续).
-		胜出条件:
-			棋盘被完全占满(最多的为胜?)
-	*/
-	grid := InitGrid(row, col, &Grid{})
-	rand.Seed(time.Now().Unix())
-	i := 0 //
-	for {
-		if grid.IsFull() {
-			black, white := grid.Count()
-			if black > white {
-				fmt.Println("黑手胜", fmt.Sprintf("黑手:%d;白手:%d", black, white))
-			} else if black < white {
-				fmt.Println("白手胜", fmt.Sprintf("黑手:%d;白手:%d", black, white))
-			} else {
-				fmt.Println("平手", fmt.Sprintf("黑手:%d;白手:%d", black, white))
-			}
-			grid.Print()
-			break
-		}
-		//规定偶数为: 黑手
-		h := grid.GetEmptyLastRow(rand.Intn(grid.GetColLen()) + 1)
-		if h != nil {
-			if i%2 == 0 {
-				h.value = BlackHand
-			} else {
-				h.value = WhiteHand
-			}
-		}
-		i++
-	}
-}
 
 //落子的坐标
 type XY struct {
@@ -586,8 +517,7 @@ func main() {
 	//空棋盘
 	grid.Print()
 
-	//TestGrid(6, 7)
-	//GameOne(6, 7)
+	TestGrid(6, 7)
 	GameTwo(10, 10)
 }
 
