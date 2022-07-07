@@ -32,6 +32,29 @@ func findGenerateParenthesis(lindex, rindex int, str string, res *[]string) {
 	}
 }
 
+func generateParenthesis2(n int) []string {
+	res := make([]string, 0)
+	generate("",&res, n, n)
+	return res
+}
+
+func generate(s string, res *[]string, left int,right int ) {
+	if left == 0 && right == 0 {
+		*res = append(*res, s)
+		return
+	}
+
+	if left > 0 {
+		generate(s + "(", res, left - 1, right)
+	}
+	if right > left {
+		generate(s + ")", res, left, right - 1)
+	}
+}
+
+
 func main() {
 	fmt.Printf("%#v", generateParenthesis(3))
+	fmt.Println()
+	fmt.Printf("%#v", generateParenthesis2(3))
 }

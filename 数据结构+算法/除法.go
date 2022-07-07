@@ -16,12 +16,18 @@ func divide(dividend int, divisor int) int {
 	if divisor < 0 {
 		divisor, neg = -divisor, !neg
 	}
-	sum, cnt, multi := 0, 1, divisor
+	sum := 0
+	cnt := 1
+	multi := divisor
 	for cnt >= 1 {
 		if sum+multi <= dividend {
-			sum, res, cnt, multi = sum+multi, res+cnt, cnt<<1, multi<<1
+			sum  = sum+multi
+			res  = res+cnt
+			cnt  = cnt<<1
+			multi = multi<<1
 		} else {
-			cnt, multi = cnt>>1, multi>>1
+			cnt = cnt>>1
+			multi = multi>>1
 		}
 	}
 

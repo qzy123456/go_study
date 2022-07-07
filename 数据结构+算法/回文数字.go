@@ -12,11 +12,11 @@ func isPalindrome(x int) bool {
 
 	var result int
 	for i:=x; i!=0; i=i/10{
-		fmt.Println(i)
+		fmt.Println("i",i)
 		tmp := i%10
-		fmt.Println(tmp)
+		fmt.Println("temp",tmp)
 		result = result*10 + tmp
-		fmt.Println(result)
+		fmt.Println("result",result)
 	}
 
 	return result==x

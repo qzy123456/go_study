@@ -46,6 +46,6 @@ func myAtoi(str string)int  {
 }
 
 func main() {
-   s := "4193 xx "
+   s := "-4193- xx "
    fmt.Println(myAtoi(s))
 }

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 //给出一个有序数组 nums 和一个数 target，要求在数组中找到第一个和这个元素相等的元素下标，最后一个和这个元素相等的元素下标。
 func searchRange(nums []int, target int) []int {
@@ -81,6 +84,16 @@ func searchLastLessElement(nums []int, target int) int {
 	}
 	return -1
 }
+//力扣官方答案
+func searchRange2(nums []int, target int) []int {
+	leftmost := sort.SearchInts(nums, target)
+	if leftmost == len(nums) || nums[leftmost] != target {
+		return []int{-1, -1}
+	}
+	rightmost := sort.SearchInts(nums, target + 1) - 1
+	return []int{leftmost, rightmost}
+}
+
 
 func main() {
 	arr := []int{1,2,3,4,4,5}

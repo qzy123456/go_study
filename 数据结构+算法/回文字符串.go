@@ -108,7 +108,6 @@ func longestPalindrome4(s string) string {
 		return s
 	}
 
-	max := 0
 	rst := ""
 
 	for i := 0; i < len(s); i++ {
@@ -116,14 +115,13 @@ func longestPalindrome4(s string) string {
 			tmp := s[i:j]
 			//fmt.Println(tmp)
 			if palindrome(tmp) {
-				if max < len(tmp) {
-					max = len(tmp)
+				if len(res) < len(tmp) {
 					rst = tmp
 				}
 			}
 		}
 	}
-
+     //上面已经判断len == 1的情况了，这种直接返回第一个字符
 	if rst == "" {
 		return s[0:1]
 	}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/binary"
 	"fmt"
 )
 
@@ -18,7 +19,7 @@ const (
 )
 
 const (
-	a       = iota             //a=0
+	a       = iota //a=0
 	b       = "B"
 	c       = iota             //c=2
 	d, e, f = iota, iota, iota //d=3,e=3,f=3
@@ -27,4 +28,41 @@ const (
 
 func main() {
 	fmt.Println(a, b, c, d, e, f, g, h, i, j, x, y, z, w, v)
+	nums := []int{1,2,3,4,5}
+	fmt.Println(searchFirstEqualElement(nums,3))
 }
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func isValidSudoku(board [][]byte) bool {
+	 m1,m2,m3 := make(map[byte]bool),make(map[byte]bool),make(map[byte]bool)
+	for i:=0;i<9 ;i++  {
+		for j:=0;j<9 ;j++  {
+			if board[i][j] != '.'{
+				if m1[board[i][j]]{
+					return false
+				}
+				m1[board[i][j]] = true
+			}
+			if board[j][i] != '.'{
+				if m2[board[j][i]]{
+					return false
+				}
+				m2[board[j][i]] = true
+			}
+			row := (i%3)*3 + j%3
+			col := (i/3)*3 + j/3
+			if board[row][col] != '.'{
+				if m3[board[row][col]]{
+					return false
+				}
+				m3[board[row][col]] = true
+			}
+		}
+	}
+
+	return true
+}
+

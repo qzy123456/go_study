@@ -2,23 +2,20 @@ package main
 
 import "fmt"
 
-func getPrefix(arr []string) string {
-	if len(arr) <= 1 {
+func longestCommonPrefix(strs []string) string {
+	if len(strs) == 0 {
 		return ""
 	}
-	firstStr := arr[0]
-	l := len(arr)
-	for i := range firstStr {
-		for j := 1; j < l; j++ {
-			if arr[j][i] != firstStr[i] {
-				return firstStr[:i]
+	for i := 0; i < len(strs[0]); i++ {
+		for j := 1; j < len(strs); j++ {
+			if i == len(strs[j]) || strs[j][i] != strs[0][i] {
+				return strs[0][:i]
 			}
 		}
 	}
-	return ""
+	return strs[0]
 }
-
 func main() {
-	arr :=[]string{"flower","flow","fli","ff"}
-	fmt.Println(getPrefix(arr))
+	arr :=[]string{"ab","a"}
+	fmt.Println(longestCommonPrefix(arr))
 }

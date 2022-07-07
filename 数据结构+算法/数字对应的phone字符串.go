@@ -97,12 +97,12 @@ func letterFunc(res string, digits string) {
 		return
 	}
 
-	k := digits[0:1]
-	digits = digits[1:]
-	for i := 0; i < len(dict[k]); i++ {
+	k := digits[0:1] //第一个按键
+	digits = digits[1:] //后面n个按键
+	for i := 0; i < len(dict[k]); i++ { //第一个按键上的n个字母
 		res += dict[k][i]
 		letterFunc(res, digits)
-		res = res[0 : len(res)-1]
+		res = res[0 : len(res)-1]   //最后一个是一个单独字母 要抛弃
 	}
 }
 

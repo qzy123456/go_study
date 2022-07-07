@@ -12,15 +12,17 @@ func fourSum(nums []int, target int) [][]int {
 	sort.Ints(nums)
 	//1，-1，0，0
 	for j := 0; j < len; j++ {
+		//第一个数
 		if j > 0 && nums[j] == nums[j-1] {
 			continue
 		}
 		for index := j + 1; index < len; index++ {
+			//第二个数
 			if index > j+1 && nums[index] == nums[index-1] {
 				continue
 			}
 			//index+1=2，len-1=3
-			start, end = index+1, len-1
+			start, end = index+1, len-1 //第三个数  最后一个数
 			for start < end {
 				//sum = 0+1+2+3
 				sum = nums[start] + nums[index] + nums[end] + nums[j]

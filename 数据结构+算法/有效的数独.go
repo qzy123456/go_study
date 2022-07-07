@@ -8,7 +8,6 @@ func isValidSudoku(board [][]byte) bool {
 		m2 := make(map[byte]bool)
 		m3 := make(map[byte]bool)
 		//fmt.Printf("i: %d, num[i]: %v\n", i, string(board[i]))
-
 		// 判断每一行是否重复
 		for j := 0; j < 9; j++ {
 			if board[i][j] != '.' {
@@ -18,7 +17,6 @@ func isValidSudoku(board [][]byte) bool {
 				}
 				m1[board[i][j]] = true
 			}
-
 			// 判断每一列是否重复
 			if board[j][i] != '.' {
 				//fmt.Printf("j2: %d, num[j]: %v\n", j, board[j][i])
@@ -27,7 +25,6 @@ func isValidSudoku(board [][]byte) bool {
 				}
 				m2[board[j][i]] = true
 			}
-
 			// 判断9宫格内的数据是否重复
 			row := (i%3)*3 + j%3   //行
 			col := (i/3)*3 + j/3   //列
@@ -44,6 +41,26 @@ func isValidSudoku(board [][]byte) bool {
 	return true
 }
 
+//官方解法
+func isValidSudoku2(board [][]byte) bool {
+	var rows, columns [9][9]int
+	var subboxes [3][3][9]int
+	for i, row := range board {
+		for j, c := range row {
+			if c == '.' {
+				continue
+			}
+			index := c - '1'
+			rows[i][index]++
+			columns[j][index]++
+			subboxes[i/3][j/3][index]++
+			if rows[i][index] > 1 || columns[j][index] > 1 || subboxes[i/3][j/3][index] > 1 {
+				return false
+			}
+		}
+	}
+	return true
+}
 
 func main() {
 	board := [][]byte{

@@ -33,8 +33,8 @@ func strStr2(haystack string, needle string) int {
 }
 
 func main() {
-	haystack := "aabaa"
-	needle := "ba"
+	haystack := "abcde"
+	needle := "de"
 	fmt.Println(strStr(haystack, needle))
 	fmt.Println(strStr2(haystack, needle))
 }

@@ -117,10 +117,34 @@ func lengthOfLongestSubstring4(s string)int {
 	return ans
 }
 
+// 解法三 滑动窗口-哈希桶
+func lengthOfLongestSubstring5(s string) int {
+	right, left, res := 0, 0, 0
+	indexes := make(map[byte]int, len(s))
+	for left < len(s) {
+		if idx, ok := indexes[s[left]]; ok && idx >= right {
+			right = idx + 1
+			fmt.Println(indexes[s[left]],string(s[left]),right)
+		}
+		indexes[s[left]] = left
+		left++
+		fmt.Println("left - right",left -right)
+		res = max(res, left-right)
+	}
+	return res
+}
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
 func main() {
 	s := "abcabcaa"
 	fmt.Println(lengthOfLongestSubstring(s))
 	fmt.Println(lengthOfLongestSubstring2(s))
 	fmt.Println(lengthOfLongestSubstring3(s))
 	fmt.Println(lengthOfLongestSubstring4(s))
+	fmt.Println(lengthOfLongestSubstring5(s))
 }
