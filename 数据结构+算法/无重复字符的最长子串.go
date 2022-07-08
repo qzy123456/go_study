@@ -57,7 +57,7 @@ func lengthOfLongestSubstring2(s string)int{
 }
 
 //找出子串不重复的
-func allUnique(s string,start,end int)(bool) {
+func allUnique(s string,start,end int) bool {
 	//会截取start -> end-1位置的下标
 	s = s[start:end]
 	for i := 0; i < len(s); i++ {
@@ -73,18 +73,19 @@ func allUnique(s string,start,end int)(bool) {
 //利用滑动窗口和容器
 func lengthOfLongestSubstring3(s string)int {
 	//借助一个容器，来判断，子串中是否有重复
-	m := make(map[byte]byte)
+	m := make(map[byte]int)
 	sLen := len(s)
-	start, end := 0, 0
+	start := 0
+	end   := 0
 	var repeatCount int = 0
 	//start 和 end 双条件判断，只有end一个也可以，可能这样更严谨一些吧
 	for start < sLen && end < sLen {
 		temp := s[end]
 		if _, ok := m[temp]; !ok {
 			//不存在说明该key是唯一的
-			m[s[end]] = s[end]
+			m[s[end]] = end
 			end++ //移动滑动窗口
-			repeatCount = int(math.Max(float64(repeatCount), float64(end-start)))
+			repeatCount = max(repeatCount, end-start)
 		} else {
 			//说明了有重复的，滑动窗口移动，则start+1,
 			delete(m, s[start])
@@ -103,16 +104,18 @@ func lengthOfLongestSubstring3(s string)int {
 // cb
 // b
 func lengthOfLongestSubstring4(s string)int {
-	var n, ans= len(s), 0
-	m := make(map[string]int) //存放字符出现的位置
-	for j, i := 0, 0; j < n; j++ {
-		if _, ok := m[string(s[j])]; ok {
-			//发现重复的，则重新选择一个i，这个i停留在出现重复的前一位置
-			i = int(math.Max(float64(m[string(s[j])]), float64(i))) //这里的i则为下标
+	var length, ans ,index = len(s), 0 ,0
+	m := make(map[byte]int) //存放字符出现的位置
+	for j:= 0; j < length; j++ {
+	//abcabcbb
+	//map[]map[97:1]map[97:1 98:2]map[97:1 98:2 99:3]map[97:4 98:2 99:3]map[97:4 98:5 99:3]map[97:4 98:5 99:6]map[97:7 98:5 99:6]
+		if tempIndex, ok := m[s[j]]; ok {
+			//发现重复的，则重新选择一个index，这个index停留在出现重复的前一位置
+			index = max(tempIndex, index)//这里的index则为下标
 		}
-		//每次计算j-i+1的记录，j为字符串的下标，i为下标，重复，i则从重复位置前一位开始
-		ans = int(math.Max(float64(ans), float64(j-i+1)))
-		m[string(s[j])] = j + 1
+		//每次计算j-index+1的记录，j为字符串的下标，index为下标，重复，index则从重复位置前一位开始
+		ans = max(ans, j-index+1)
+		m[s[j]] = j + 1
 	}
 	return ans
 }
@@ -120,13 +123,13 @@ func lengthOfLongestSubstring4(s string)int {
 // 解法三 滑动窗口-哈希桶
 func lengthOfLongestSubstring5(s string) int {
 	right, left, res := 0, 0, 0
-	indexes := make(map[byte]int, len(s))
+	maps := make(map[byte]int, len(s))
 	for left < len(s) {
-		if idx, ok := indexes[s[left]]; ok && idx >= right {
+		if idx, ok := maps[s[left]]; ok && idx >= right {
 			right = idx + 1
-			fmt.Println(indexes[s[left]],string(s[left]),right)
+			fmt.Println(maps[s[left]],string(s[left]),right)
 		}
-		indexes[s[left]] = left
+		maps[s[left]] = left
 		left++
 		fmt.Println("left - right",left -right)
 		res = max(res, left-right)
@@ -145,6 +148,6 @@ func main() {
 	fmt.Println(lengthOfLongestSubstring(s))
 	fmt.Println(lengthOfLongestSubstring2(s))
 	fmt.Println(lengthOfLongestSubstring3(s))
-	fmt.Println(lengthOfLongestSubstring4(s))
+	fmt.Println("4===》",lengthOfLongestSubstring4(s))
 	fmt.Println(lengthOfLongestSubstring5(s))
 }
