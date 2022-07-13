@@ -65,7 +65,7 @@ func longestValidParentheses1(s string) int {
 		}
 	}
 	left, right = 0, 0
-	for i := len(s) - 1; i >= 0; i-- {
+	for i := len(s)-1; i >= 0; i-- {
 		if s[i] == '(' {
 			left++
 		} else {
@@ -81,8 +81,8 @@ func longestValidParentheses1(s string) int {
 }
 
 func main() {
-	s1 :=  ")()())"
-	s2 :=  ")()())"
+	s1 :=  ")()()()())"
+	s2 :=  ")()()()())"
     fmt.Println(longestValidParentheses(s1))
     fmt.Println(longestValidParentheses1(s2))
 }

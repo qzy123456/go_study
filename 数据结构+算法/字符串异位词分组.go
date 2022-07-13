@@ -94,10 +94,45 @@ func groupAnagrams3(strs []string) [][]string {
 	return result
 }
 
+func groupAnagrams4(strs []string) [][]string {
+	//定义map存储相同字符
+	mp := map[string][]string{}
+	for _, str := range strs {
+		s := []byte(str)
+		sort.Slice(s, func(i, j int) bool { return s[i] < s[j] })
+		sortedStr := string(s)
+		//把排序过后，字母一样的字符串存储到一起，类似于
+		//map[abt:[bat] aet:[eat tea ate] ant:[tan nat]]
+		mp[sortedStr] = append(mp[sortedStr], str)
+	}
+	//拼接返回值
+	ans := make([][]string, 0, len(mp))
+	for _, v := range mp {
+		ans = append(ans, v)
+	}
+	return ans
+}
 
+func groupAnagrams5(strs []string) [][]string {
+	mp := map[[26]int][]string{}
+	for _, str := range strs {
+		cnt := [26]int{}
+		for _, b := range str {
+			cnt[b-'a']++
+		}
+		mp[cnt] = append(mp[cnt], str)
+	}
+	ans := make([][]string, 0, len(mp))
+	for _, v := range mp {
+		ans = append(ans, v)
+	}
+	return ans
+}
 func main() {
 	strs :=  []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	fmt.Println(groupAnagrams(strs))
 	fmt.Println(groupAnagrams2(strs))
 	fmt.Println(groupAnagrams3(strs))
+	fmt.Println(groupAnagrams4(strs))
+	fmt.Println(groupAnagrams5(strs))
 }

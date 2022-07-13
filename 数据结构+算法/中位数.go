@@ -147,6 +147,7 @@ func findMedianSortedArrays4(nums1 []int, nums2 []int) float64 {
 	} else {
 		halfLength = sumLength / 2
 	}
+	//fmt.Println(halfLength)
 	// 这三个用来存储临时变量，也就是和中位数有关的一位或者两位数字
 	tmpNum0, tmpNum1, tmpNum2 := 0, 0, 0
 	// 题目要求时间复杂度是O(m+n)，所以使用两个下标来遍历两个数组
@@ -200,7 +201,7 @@ func findMedianSortedArrays4(nums1 []int, nums2 []int) float64 {
 }
 func main() {
 
-	nums1 := []int{1,4}
+	nums1 := []int{1, 4, 5}
 	nums2 := []int{3, 6, 7}
 
 	//fmt.Println(findMedianSortedArrays(nums1, nums2))

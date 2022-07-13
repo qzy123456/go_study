@@ -34,18 +34,17 @@ func max(a, b int) int {
 
 //动态规划解法
 func maxSubArrayKMP(nums []int) int {
-	max_sum := nums[0]
+	maxSum := nums[0]
 	for i := 1; i < len(nums); i++ {
-		if nums[i - 1] > 0 {
-			nums[i] += nums[i - 1]
+		if nums[i] + nums[i-1] > nums[i] {
+			nums[i] += nums[i-1]
 		}
-		if nums[i] > max_sum {
-			max_sum = nums[i]
+		if nums[i] > maxSum {
+			maxSum = nums[i]
 		}
 	}
-	return max_sum
+	return maxSum
 }
-
 
 func main() {
 	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}

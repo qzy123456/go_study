@@ -29,8 +29,8 @@ func mergeTowListss(lists []*ListNode) *ListNode {
 	if length == 1 {
 		return lists[0]
 	}
-	mid := length / 2
-	left := mergeTowListss(lists[:mid])
+	mid   := length / 2
+	left  := mergeTowListss(lists[:mid])
 	right := mergeTowListss(lists[mid:])
 	return mergeTowLists(left, right)
 }

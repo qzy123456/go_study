@@ -25,7 +25,32 @@ func maxArea(arr []int) int {
 	}
 	return max
 }
+func maxArea2(height []int) int {
+	start, end := 0, len(height)-1
+	max := 0
+	for start < end {
+		cur := (end - start) * min(height[start], height[end])
+		if cur > max {
+			max = cur
+		}
+		if height[start] < height[end] {
+			start++
+		} else {
+			end--
+		}
+
+	}
+	return max
+}
+func min(a,b int) int {
+	if a<b{
+		return a
+	}else{
+		return b
+	}
+}
 func main() {
 	arr := []int{2, 4, 6, 8, 10}
 	fmt.Println(maxArea(arr))
+	fmt.Println(maxArea2(arr))
 }

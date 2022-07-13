@@ -39,7 +39,7 @@ func threeSum(nums []int)[][]int{
 func threeSum2(nums []int) [][]int {
 	//先对数组排序
 	sort.Ints(nums)
-	result := [][]int{}
+	var result [][]int
 	for i := 0; i < len(nums)-1; i++ {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
