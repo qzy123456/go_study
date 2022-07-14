@@ -30,7 +30,7 @@ func longestPalindrome2(s string) string {
 	var res string = string(s[0])
 	for i:=0;i<len(s)-1;i++{
 		for j:=i+1;j<len(s);j++{
-			if palindrome(s[i:j+1]) && j-i+1>len(res){
+			if palindrome(s[i:j+1]) && j+1-i>len(res){
 				res = s[i:j+1]
 			}
 		}
