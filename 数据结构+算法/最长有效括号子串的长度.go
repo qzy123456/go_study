@@ -60,6 +60,7 @@ func longestValidParentheses1(s string) int {
 		}
 		if left == right {
 			maxLength = max(maxLength, 2*right)
+			//应该左括号在前，左边应该比右边多，当右边比左边多，就是不正常的数据，就要重新计算
 		} else if right > left {
 			left, right = 0, 0
 		}

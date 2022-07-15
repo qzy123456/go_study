@@ -8,6 +8,7 @@ import "fmt"
 func sortColors(nums []int) {
 	zero, one := 0, 0
 	for i, n := range nums {
+		//默认第一个全部设置成2
 		nums[i] = 2
 		if n <= 1 {
 			nums[one] = 1
@@ -35,28 +36,18 @@ func sortColors2(nums []int)  {
 }
 
 func sortColors3(nums []int) {
-	low, mid, high := 0, 0, len(nums)-1
-	// 定义三个指针，当中间的指针超过右边的指针时，就返回了
-	// 算法核心：
-	for mid <= high {
-		if nums[mid] == 1 {
-			// 当中间指针指向的值是1时，中间指针向后移动一位
-			mid++
-			continue
-		} else if nums[mid] == 0 {
-			// 交换中间指针和左边指针的值
-			// 当中间指针指向的值是0时，如果此时左边指针和中间指针重合，那么两个指针都向后移动一位
-			// 否则只是左边的指针向后移动一位
-			nums[low], nums[mid] = nums[mid], nums[low]
-			if mid == low {
-				mid++
+	p0, p1 := 0, 0
+	for i, c := range nums {
+		if c == 0 {
+			nums[i], nums[p0] = nums[p0], nums[i]
+			if p0 < p1 {
+				nums[i], nums[p1] = nums[p1], nums[i]
 			}
-			low++
-		} else if nums[mid] == 2 {
-			// 交换中间指针和右边指针的值
-			// 当中间的指针指向的值是2时，右边的指针向左移动一位
-			nums[high], nums[mid] = nums[mid], nums[high]
-			high--
+			p0++
+			p1++
+		} else if c == 1 {
+			nums[i], nums[p1] = nums[p1], nums[i]
+			p1++
 		}
 	}
 }

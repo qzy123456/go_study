@@ -10,13 +10,17 @@ import "fmt"
 //]
 func minPathSum(grid [][]int) int {
 	m, n := len(grid), len(grid[0])
+	//第一列
 	for i := 1; i < m; i++ {
 		 //fmt.Println(grid[i][0],grid[i-1][0])  //走的时候1，1，4，2
 		grid[i][0] += grid[i-1][0]
 	}
+	//fmt.Println(grid) // 131 251 621
+	//第一行
 	for j := 1; j < n; j++ {
 		grid[0][j] += grid[0][j-1]
 	}
+	//fmt.Println(grid) //145 251 621
 	for i := 1; i < m; i++ {
 		for j := 1; j < n; j++ {
 			grid[i][j] += min(grid[i-1][j], grid[i][j-1])

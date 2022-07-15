@@ -39,10 +39,7 @@ func climbStairs(n int) int {
 	return sum
 }
 func climbStairs1(n int) int {
-	if n <= 1 {
-		return 1
-	}
-	if n < 3 {
+	if n <= 2 {
 		return n
 	}
 	return climbStairs1(n - 1) + climbStairs1(n - 2)

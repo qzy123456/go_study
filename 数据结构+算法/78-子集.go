@@ -27,7 +27,7 @@ func subsets(nums []int) [][]int {
 	return res
 }
 
-// 解法2
+// 解法2 dfs回溯
 func subsets2(nums []int) [][]int {
 	var res [][]int
 	var path []int
@@ -36,6 +36,7 @@ func subsets2(nums []int) [][]int {
 }
 
 func generateSubsets(nums []int, startIndex int, path []int, res *[][]int) {
+	//空数组也算一个子集
 	temp := make([]int, len(path))
 	copy(temp, path)
 	*res = append(*res, temp)
