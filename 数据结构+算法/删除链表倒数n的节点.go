@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	)
 
 type ListNode struct {
 	Val  int
@@ -27,7 +29,19 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	slow.Next = slow.Next.Next
 	return head
 }
-
+var countLists int
+//递归
+func removeNthFromEnd2(head *ListNode, n int) *ListNode {
+	if head == nil{
+		return nil
+	}
+    head.Next = removeNthFromEnd2(head.Next,n)
+    countLists++
+    if countLists==n{
+    	return head.Next
+	}
+	return head
+}
 func main() {
 	var n1 = &ListNode{}
 	n1.Val = 1
@@ -35,9 +49,9 @@ func main() {
 		Next: &ListNode{Val: 5,
 			Next: &ListNode{Val: 6},
 		}}
-	res := removeNthFromEnd(n1,2)
+	res := removeNthFromEnd2(n1,4)
 	for res != nil {
-		//fmt.Println(res.Val)
+		fmt.Println(res.Val)
 		res = res.Next
 	}
 }

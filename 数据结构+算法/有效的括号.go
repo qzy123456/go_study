@@ -21,7 +21,7 @@ func isValid(s string) bool {
 			//这里有个小技巧，就是每次我们放进容器的字符，当配对成功的时候，肯定是塞进右边的符号，
 			//所以可以构造一个以右边括号为key，左边括号为值得字典
 			if stackList[len(stackList)-1] == judgeMap[string(s[i])] {
-				fmt.Println(i,string(s[i]),stackList[len(stackList)-1])
+				//fmt.Println(i,string(s[i]),stackList[len(stackList)-1])
 				stackList = stackList[:len(stackList)-1]
 			} else {
 				stackList = append(stackList, string(s[i]))
@@ -34,8 +34,40 @@ func isValid(s string) bool {
 		return true
 	}
 }
+func isValid2(s string) bool {
+	if len(s) == 0{
+		return true
+	}
+	//栈
+	var stackList []string
 
+	//把字符串的每个字符放进栈中，每放一个就判断与前一个是不是配对的
+	for i:=0; i<len(s); i++ {
+	     if s[i] == '('{
+	     	stackList = append(stackList,")")
+		 }else if s[i] == '{'{
+		 	stackList =append(stackList,"}")
+		 }else if s[i] == '['{
+		 	stackList = append(stackList,"]")
+		 }else{
+		 	if len(stackList) == 0{
+		 		return false
+			}
+		 	stack := stackList[len(stackList)-1]
+		 	if string(s[i]) != stack{
+				return false
+			}
+		 	stackList = stackList[:len(stackList)-1]
+		 }
+	}
+	if len(stackList) != 0{
+		return false
+	} else {
+		return true
+	}
+}
 func main() {
 	test := "{()}"
 	fmt.Printf("judge is: %v\n", isValid(test))
+	fmt.Printf("judge is: %v\n", isValid2(test))
 }
