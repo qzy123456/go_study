@@ -20,12 +20,14 @@ func HeapSort(data []int) {
 
 func heapify(data []int, size, i int) {
 	for {
+		c1 := 2*i+1
+		c2 := 2*i+2
 		max := i
-		if 2*i+1 < size && data[2*i+1] > data[max] {
-			max = 2*i + 1
+		if c1 < size && data[c1] > data[max] {
+			max = c1
 		}
-		if 2*i+2 < size && data[2*i+2] > data[max] {
-			max = 2*i + 2
+		if c2 < size && data[c2] > data[max] {
+			max = c2
 		}
 		if i == max {
 			break
