@@ -25,17 +25,18 @@ func exist(board [][]byte, word string) bool {
 		if index == len(word) {
 			return true
 		}
-
+        //上下左右四个峰值不能回退了。
 		if r < 0 || r >= m || c < 0 || c >= n || word[index] != board[r][c] {
 			return false
 		}
-
+        //标志已经回溯过了
 		temp := board[r][c]
 		board[r][c] = 0
+		//上下左右四个方向，index是单词的下标
 		if dfs(r+1, c, index+1) || dfs(r, c+1, index+1) || dfs(r-1, c, index+1) || dfs(r, c-1, index+1) {
 			return true
 		}
-
+		//重新回溯
 		board[r][c] = temp
 
 		return false
