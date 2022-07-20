@@ -45,12 +45,8 @@ func detecCycle2(head *ListNode)*ListNode  {
 			break
 		}
 	}
-
+    //当发现是环的时候，慢指针回到头节点，快指针不动。然后快慢指针每次只移动一次
 	if flag{
-		fmt.Println(quick == head)
-		fmt.Println(slow)
-		//false
-		//&{5 0xc00008e070}
 		slow = head
 		for slow!=quick{
 			slow = slow.Next
