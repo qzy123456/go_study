@@ -29,14 +29,16 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 }
 
 func reverse(first *ListNode, last *ListNode) *ListNode {
-	//fmt.Println("刚进来",first,last)  //1,3
+	fmt.Println("刚进来",first,last)  //1,3
 	prev := last
-	for first != last {
-		tmp := first.Next   // 2
+	for first != last{
+		temp := first.Next
+		fmt.Println("temp",temp) //2，3
 		first.Next = prev
-		//fmt.Println("2",first)
 		prev = first
-		first = tmp
+		fmt.Println("prev",prev)//1 ，2
+		first = temp
+		fmt.Println("first",first)//2 ，3
 	}
 	return prev
 }
