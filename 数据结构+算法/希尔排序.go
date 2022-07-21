@@ -15,10 +15,19 @@ import "fmt"
 func ShellSort(data []int) {
 	length := len(data)
 	step := length / 2
-	fmt.Println(step)
 	for step >= 1 {
 		for i := 0; i < length-step; i++ {
-			j, k := i+step, data[i+step]
+			j := i+step
+			k := data[j]
+			//fmt.Println(j,step)
+			//3 3
+			//4 3
+			//5 3
+			//1 1
+			//2 1
+			//3 1
+			//4 1
+			//5 1
 			for ; j > step-1 && data[j-step] > k; j -= step {
 				data[j] = data[j-step]
 			}
