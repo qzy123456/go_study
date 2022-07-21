@@ -11,10 +11,10 @@ func isAnagram1(s string, t string) bool {
 	var tMap = make(map[rune]int)
 
 	for _, c := range s {
-		sMap[c] = sMap[c] + 1
+		sMap[c] +=  1
 	}
 	for _, c := range t {
-		tMap[c] = tMap[c] + 1
+		tMap[c] +=  1
 	}
 	return reflect.DeepEqual(sMap, tMap)
 }
