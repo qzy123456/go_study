@@ -30,7 +30,7 @@ func eratostheness(n int)int{
 		//如果是质数
 		if !isComposite[i]{
 			count++
-			// i*i, ..., 4*i, 5*i...均为合数
+			// i*i, ..., 4为合数
 			for j:=i*i;j<n ;j+=i  {
 				isComposite[j] = true
 			}
@@ -40,6 +40,6 @@ func eratostheness(n int)int{
 }
 
 func main() {
-	fmt.Println(bf(5))
-	fmt.Println(eratostheness(5))
+	fmt.Println(bf(9))
+	fmt.Println(eratostheness(9))
 }
