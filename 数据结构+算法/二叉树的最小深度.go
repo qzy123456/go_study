@@ -54,12 +54,19 @@ func minDepth(root *TreeNode) int {
 
 	var min = math.MaxInt64
 	if root.left != nil {
-		min = int(math.Min(float64(minDepth(root.left)), float64(min)))
+		min = mins(minDepth(root.left), min)
 	}
 	if root.right != nil {
-		min = int(math.Min(float64(minDepth(root.right)), float64(min)))
+		min = mins(minDepth(root.right), min)
 	}
 	return min + 1 // 1为当前节点的深度
+}
+
+func mins(a ,b int)int{
+	if a > b{
+		return b
+	}
+	return a
 }
 
 func main() {
