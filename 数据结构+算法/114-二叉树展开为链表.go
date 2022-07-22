@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/iris-contrib/blackfriday"
+)
 
 type TreeNode struct {
       Val int
@@ -40,4 +43,3 @@ func main() {
 	var node1 = TreeNode{7, &node2, &node3}
 	flatten(&node1)
 }
-
