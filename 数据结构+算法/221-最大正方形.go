@@ -59,7 +59,7 @@ func maximalSquare2(matrix [][]byte) int {
 	}
 	cols := len(matrix[0])
 	maxSideLen := 0
-
+    //fmt.Println(rows,cols) //4 5
 	dp := make([][]int, rows + 1)
 	dp[0] = make([]int, cols + 1)
 
