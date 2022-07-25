@@ -35,6 +35,15 @@ func ReverseNodeList1(head *Node)*Node{
 	}
 
 	return resHead
+	//var resNode  *ListNode
+	//node := head
+	//for node != nil{
+	//	temp := node.Next
+	//	node.Next = resNode
+	//	resNode = node
+	//	node = temp
+	//}
+	//return resNode
 }
 //反转链表的实现
 //那么这道题其实就是把指针指向前一个节点
