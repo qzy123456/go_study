@@ -20,9 +20,35 @@ func rob(nums []int) int {
 	return currMAX
 }
 
+func rob2(nums []int) int {
+	length := len(nums)
+	if length == 0 {
+		return 0
+	}
+	if length > 1 {
+		// 如果第一家大于第二家，那么就偷第一家，否则就偷第二家
+		if nums[1] < nums[0] {
+			nums[1] = nums[0]
+		}
+		if length > 2 {
+			for i := 2; i < len(nums); i++ {
+				// 偷第i家
+				if nums[i]+nums[i-2] >= nums[i-1] {
+					nums[i] += nums[i-2]
+				} else {
+					// 不偷第i家
+					nums[i] = nums[i-1]
+				}
+			}
+		}
+	}
+	return nums[length-1]
+}
+
 func main() {
 	arr  := []int{1, 2, 3, 1}
 	arr2 := []int{2, 7, 9, 3, 1}
 	fmt.Println(rob(arr))
 	fmt.Println(rob(arr2))
+	fmt.Println(rob2(arr2))
 }
