@@ -40,9 +40,25 @@ func productExceptSelf2(nums []int) []int {
 	}
 	return ans
 }
-
+//动态规划
+func productExceptSelf3(nums []int) []int {
+	dp := make([]int,len(nums))
+	l := 1
+	r := 1
+	for i:=0;i<len(nums);i++  {
+		dp[i] = l
+		l *= nums[i]
+	}
+	fmt.Println(dp)
+	for j:=len(nums)-1;j>=0 ;j--  {
+		dp[j] = dp[j] * r
+		r *= nums[j]
+	}
+	return dp;
+}
 func main() {
       arr := []int{1,2,3,4}
-      fmt.Println(productExceptSelf(arr))
-      fmt.Println(productExceptSelf2(arr))
+      //fmt.Println(productExceptSelf(arr))
+	  fmt.Println(productExceptSelf2(arr))
+      fmt.Println(productExceptSelf3(arr))
 }

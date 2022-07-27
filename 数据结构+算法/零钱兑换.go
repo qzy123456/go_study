@@ -51,23 +51,23 @@ func coinChange(coins []int, amount int) int {
 
 func coinChange2(coins []int, amount int) int {
 	sort.Ints(coins)
-	ret := make([]int, amount+1)
+	dp := make([]int, amount+1)
 	for k :=range ret{
-		ret[k] = amount+1
+		dp[k] = amount+1
 	}
-	fmt.Println(ret) //[12 12 12 12 12 12 12 12 12 12 12 12]
-	ret[0] = 0
+	fmt.Println(dp) //[12 12 12 12 12 12 12 12 12 12 12 12]
+	dp[0] = 0
 	for i:=1;i<=amount;i++{
 		for j:=0;j<len(coins);j++{
 			if i >= coins[j] {
-				ret[i] = min(ret[i], ret[i-coins[j]] + 1)
+				dp[i] = min(dp[i], dp[i-coins[j]] + 1)
 			}
 		}
 	}
-	if ret[amount] == amount+1{
+	if dp[amount] == amount+1{
 		return -1
 	}
-	return ret[amount]
+	return dp[amount]
 }
 
 func min(a, b int) int{
