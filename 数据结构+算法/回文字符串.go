@@ -115,7 +115,7 @@ func longestPalindrome4(s string) string {
 			tmp := s[i:j]
 			//fmt.Println(tmp)
 			if palindrome(tmp) {
-				if len(res) < len(tmp) {
+				if len(rst) < len(tmp) {
 					rst = tmp
 				}
 			}
