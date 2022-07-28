@@ -49,12 +49,13 @@ func productExceptSelf3(nums []int) []int {
 		dp[i] = l
 		l *= nums[i]
 	}
-	fmt.Println(dp)
+	fmt.Println(dp) //[1 1 2 6]
 	for j:=len(nums)-1;j>=0 ;j--  {
+		//fmt.Println("r",r) //1,4,12,24
 		dp[j] = dp[j] * r
 		r *= nums[j]
 	}
-	return dp;
+	return dp
 }
 func main() {
       arr := []int{1,2,3,4}
