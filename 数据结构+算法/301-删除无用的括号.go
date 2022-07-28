@@ -61,6 +61,6 @@ func removeInvalidParentheses(s string) (ans []string) {
 	return
 }
 func main() {
-	s := "()())()"
+	s := ")("
 	fmt.Println(removeInvalidParentheses(s))
 }
