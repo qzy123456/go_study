@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 //给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。
@@ -49,13 +48,17 @@ func coinChange(coins []int, amount int) int {
 	return res[amount-1]
 }
 
+///可以类比为上台阶问题，有3种面额的硬币{1,2,5}凑成11所用的最少的硬币个数，类比为每次只能上1个，2个或5个台阶，走到第11个台阶的走法
+////动态规划，设需要凑成的金额为amount，dp[i]表示凑成i金额所用最少的硬币数，则i的取值范围为1->amount
+////状态转义方程，dp[i] = min(dp[i-coins[j]]) + 1,j的取值范围为0->len(conins),
+// 即需要遍历coins中的每一种硬币，找到最dp[i-coins[j]]小的值,然后再加1即为dp[i]
 func coinChange2(coins []int, amount int) int {
-	sort.Ints(coins)
-	dp := make([]int, amount+1)
-	for k :=range ret{
-		dp[k] = amount+1
+	maxDp := amount+1
+	dp := make([]int, maxDp)
+	for k :=range dp{
+		dp[k] = maxDp
 	}
-	fmt.Println(dp) //[12 12 12 12 12 12 12 12 12 12 12 12]
+	//fmt.Println(dp) //[12 12 12 12 12 12 12 12 12 12 12 12]
 	dp[0] = 0
 	for i:=1;i<=amount;i++{
 		for j:=0;j<len(coins);j++{
@@ -64,7 +67,7 @@ func coinChange2(coins []int, amount int) int {
 			}
 		}
 	}
-	if dp[amount] == amount+1{
+	if dp[amount] == maxDp{
 		return -1
 	}
 	return dp[amount]
