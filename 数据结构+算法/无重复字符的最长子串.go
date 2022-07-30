@@ -71,13 +71,15 @@ func allUnique(s string,start,end int) bool {
 }
 
 //利用滑动窗口和容器
+//使用一个HashSet来实现滑动窗口，用来检查重复字符。 维护开始和结束两个索引，默认都是从0开始，
+//然后随着循环【向右移动结束索引】，遇到不是重复字符则放入窗里，遇到重复字符则【向右侧移动开始索引】，最终得到结果
 func lengthOfLongestSubstring3(s string)int {
 	//借助一个容器，来判断，子串中是否有重复
 	m := make(map[byte]int)
 	sLen := len(s)
 	start := 0
 	end   := 0
-	var repeatCount int = 0
+	repeatCount  := 0
 	//start 和 end 双条件判断，只有end一个也可以，可能这样更严谨一些吧
 	for start < sLen && end < sLen {
 		temp := s[end]
@@ -88,7 +90,8 @@ func lengthOfLongestSubstring3(s string)int {
 			repeatCount = max(repeatCount, end-start)
 		} else {
 			//说明了有重复的，滑动窗口移动，则start+1,
-			delete(m, s[start])
+			//这个时候s[start]，s[end]就是第一次出现该字符的位置
+			delete(m, s[end])
 			start++
 		}
 		//fmt.Println(m)
