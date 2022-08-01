@@ -72,14 +72,14 @@ func letterCombinations_(digits string) []string {
 // 解法三 回溯（参考回溯模板，类似DFS）
 var result []string
 var dict = map[string][]string{
-	"2" : []string{"a","b","c"},
-	"3" : []string{"d", "e", "f"},
-	"4" : []string{"g", "h", "i"},
-	"5" : []string{"j", "k", "l"},
-	"6" : []string{"m", "n", "o"},
-	"7" : []string{"p", "q", "r", "s"},
-	"8" : []string{"t", "u", "v"},
-	"9" : []string{"w", "x", "y", "z"},
+	"2": []string{"a", "b", "c"},
+	"3": []string{"d", "e", "f"},
+	"4": []string{"g", "h", "i"},
+	"5": []string{"j", "k", "l"},
+	"6": []string{"m", "n", "o"},
+	"7": []string{"p", "q", "r", "s"},
+	"8": []string{"t", "u", "v"},
+	"9": []string{"w", "x", "y", "z"},
 }
 
 func letterCombinationsBT(digits string) []string {
@@ -97,17 +97,17 @@ func letterFunc(res string, digits string) {
 		return
 	}
 
-	k := digits[0:1] //第一个按键
+	k := digits[0:1]    //第一个按键
 	digits = digits[1:] //后面n个按键
 	for i := 0; i < len(dict[k]); i++ { //第一个按键上的n个字母
 		res += dict[k][i]
 		letterFunc(res, digits)
-		res = res[0 : len(res)-1]   //最后一个是一个单独字母 要抛弃
+		res = res[:len(res)-1] //最后一个是一个单独字母 要抛弃
 	}
 }
 
 func main() {
-	s:="23"
+	s := "23"
 	fmt.Println(letterCombinations(s))
 	fmt.Println(letterCombinations_(s))
 	fmt.Println(letterCombinationsBT(s))

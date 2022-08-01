@@ -107,9 +107,9 @@ func lengthOfLongestSubstring3(s string)int {
 // cb
 // b
 func lengthOfLongestSubstring4(s string)int {
-	var length, ans ,index = len(s), 0 ,0
+	var ans ,index =  0 ,0
 	m := make(map[byte]int) //存放字符出现的位置
-	for j:= 0; j < length; j++ {
+	for j:= 0; j < len(s); j++ {
 	//abcabcbb
 	//map[]map[97:1]map[97:1 98:2]map[97:1 98:2 99:3]map[97:4 98:2 99:3]map[97:4 98:5 99:3]map[97:4 98:5 99:6]map[97:7 98:5 99:6]
 		if tempIndex, ok := m[s[j]]; ok {
