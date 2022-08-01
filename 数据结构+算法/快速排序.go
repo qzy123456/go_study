@@ -20,10 +20,12 @@ func quickSort(arr []int, start, end int) {
 			}
 		}
 
+		//start  end
+		//left   right
 		if start < right {
 			quickSort(arr, start, right)
 		}
-		if end > left {
+		if left < end {
 			quickSort(arr, left, end)
 		}
 	}
