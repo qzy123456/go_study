@@ -10,9 +10,11 @@ func generate(numRows int) [][]int {
 		return nil
 	}
 	yanghui := make([][]int,numRows)
-	for i := 0; i < numRows; i++ {   //i是行
+	for i:=0;i<len(yanghui);i++{
 		// 此处需要对yanghui[i]进行make分配
 		yanghui[i] = make([]int,i+1)
+	}
+	for i := 0; i < numRows; i++ {   //i是行
 		for j := 0; j <= i; j++ {  //j是列
 			if i < 2 { //两行以内三角中的数字都是1
 				yanghui[i][j] = 1

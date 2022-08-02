@@ -37,8 +37,31 @@ func ShellSort(data []int) {
 	}
 }
 
+// 增量序列折半的希尔排序
+func ShellSort2(list []int) {
+	// 数组长度
+	n := len(list)
+	// 每次减半，直到步长为 1
+	for step := n / 2; step >= 1; step /= 2 {
+		// 开始插入排序，每一轮的步长为 step
+		for i := step; i < n; i += step {
+			// 开始插入排序，每一轮的步长为 step
+			for j := i - step; j >= 0; j -= step {
+				// 满足插入那么交换元素
+				// 开始插入排序，每一轮的步长为 step
+				if list[j+step] < list[j] {
+					list[j], list[j+step] = list[j+step], list[j]
+					continue
+				}
+				break
+			}
+		}
+	}
+}
+
 func main() {
 	ar := []int{3,1,5,4,9,0}
 	ShellSort(ar)
+	ShellSort2(ar)
 	fmt.Println(ar)
 }
