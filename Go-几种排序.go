@@ -51,8 +51,9 @@ func SelectSort(values *[5]int) {
 		//fmt.Printf("i:%d min:%d\n", i, min)
 
 		// 把每次找出来的最小值与之前的最小值做交换
-		values[i], values[min] = values[min], values[i]
-
+		if min != i {
+			values[i], values[min] = values[min], values[i]
+		}
 		//fmt.Println(values)
 	}
 }
