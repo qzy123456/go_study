@@ -29,7 +29,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		add = result/10
 		newNode := &ListNode{Val:result%10}
 		curr.Next = newNode
-		curr = newNode
+		curr = curr.Next
 
 	}
 
