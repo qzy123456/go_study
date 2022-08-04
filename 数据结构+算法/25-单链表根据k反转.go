@@ -32,12 +32,12 @@ func reverse(first *ListNode, last *ListNode) *ListNode {
 	fmt.Println("刚进来",first,last)  //1,3
 	prev := last
 	for first != last{
-		temp := first.Next
-		fmt.Println("temp",temp) //2，3
+		next := first.Next
+		fmt.Println("next",next) //2，3
 		first.Next = prev
 		prev = first
 		fmt.Println("prev",prev)//1 ，2
-		first = temp
+		first = next
 		fmt.Println("first",first)//2 ，3
 	}
 	return prev
