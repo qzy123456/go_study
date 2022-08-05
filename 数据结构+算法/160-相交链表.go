@@ -65,7 +65,25 @@ func getIntersectionNode2(headA, headB *ListNode) *ListNode {
 
 	return nil
 }
-
+func getIntersectionNode3(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+	pa, pb := headA, headB
+	for pa != pb {
+		if pa == nil {
+			pa = headB
+		} else {
+			pa = pa.Next
+		}
+		if pb == nil {
+			pb = headA
+		} else {
+			pb = pb.Next
+		}
+	}
+	return pa
+}
 func main() {
 	var n1 = &ListNode{}
 	no1 := &ListNode{
