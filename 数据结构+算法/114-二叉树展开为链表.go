@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"github.com/iris-contrib/blackfriday"
+	_"fmt"
 )
 
 type TreeNode struct {
@@ -31,6 +30,24 @@ func preorderTraversal(root *TreeNode) []*TreeNode {
 		list = append(list, preorderTraversal(root.Right)...)
 	}
 	return list
+}
+
+func flatten2(root *TreeNode) {
+	if root == nil {
+		return
+	}
+	left  := root.Left
+	right := root.Right
+	cur := left
+	if left != nil {
+		for cur.Right != nil {
+			cur = cur.Right
+		}
+		cur.Right = right
+		root.Left = nil
+		root.Right = left
+	}
+	flatten(root.Right)
 }
 
 func main() {
