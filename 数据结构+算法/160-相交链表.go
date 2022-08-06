@@ -65,6 +65,7 @@ func getIntersectionNode2(headA, headB *ListNode) *ListNode {
 
 	return nil
 }
+//链表A走完，跳到链表b，反之一样。数学公式 a+b = b+ a
 func getIntersectionNode3(headA, headB *ListNode) *ListNode {
 	if headA == nil || headB == nil {
 		return nil
@@ -97,4 +98,5 @@ func main() {
 
 	fmt.Println(getIntersectionNode(n1,n2))
 	fmt.Println(getIntersectionNode2(n1,n2))
+	fmt.Println(getIntersectionNode3(n1,n2))
 }
