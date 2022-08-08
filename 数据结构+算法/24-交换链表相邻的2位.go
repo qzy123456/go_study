@@ -32,6 +32,7 @@ func swapPairs1(head *ListNode) *ListNode {
 func swapPairs4(head *ListNode) *ListNode {
 	dummyHead := &ListNode{}
 	dummyHead.Next = head
+	//上面的两句等同于 ：dummyHead := &ListNode{0,head}
 	temp := dummyHead
 	//0->1->2->5->6
 	for temp.Next != nil && temp.Next.Next != nil {
