@@ -28,7 +28,9 @@ func sortColors2(nums []int)  {
 			nums[l], nums[i] = nums[i], nums[l]
 			l++
 		} else if nums[i] == 2 && i < r {
+			fmt.Println(nums[r],i,r)
 			nums[r], nums[i] = nums[i], nums[r]
+			fmt.Println(nums)
 			r--
 			i--
 		}
@@ -54,6 +56,7 @@ func sortColors3(nums []int) {
 
 func main() {
 	nums :=[]int{1,2,0,1,2}
-	sortColors(nums)
+	//sortColors(nums)
+	sortColors2(nums)
 	fmt.Println(nums)
 }
