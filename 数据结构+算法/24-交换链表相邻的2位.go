@@ -30,15 +30,20 @@ func swapPairs1(head *ListNode) *ListNode {
 }
 
 func swapPairs4(head *ListNode) *ListNode {
-	dummyHead := &ListNode{0, head}
+	dummyHead := &ListNode{}
+	dummyHead.Next = head
 	temp := dummyHead
+	//0->1->2->5->6
 	for temp.Next != nil && temp.Next.Next != nil {
-		node1 := temp.Next
-		node2 := temp.Next.Next
-		temp.Next = node2
-		node1.Next = node2.Next
-		node2.Next = node1
-		temp = node1
+		//fmt.Println("temp",temp.Val,"tempNext",temp.Next.Val,"tempNextNext",temp.Next.Next.Val,)
+		//temp 0 tempNext 1 tempNextNext 2
+		//temp 1 tempNext 5 tempNextNext 6
+		node1 := temp.Next     //1
+		node2 := temp.Next.Next //2
+		temp.Next = node2       //0->2
+		node1.Next = node2.Next //1->3
+		node2.Next = node1      //2->1
+		temp = node1            //1
 	}
 	return dummyHead.Next
 }
@@ -59,8 +64,10 @@ func main() {
 	n1.Next = &ListNode{Val: 2, Next: &ListNode{Val: 5,
 		Next: &ListNode{Val: 6},
 	}}
+	//1->2->5->6
 	//res := swapParis(n1)
-	res := swapPairs3(n1)
+	//res := swapPairs3(n1)
+	res := swapPairs4(n1)
 	for res != nil {
 		fmt.Println(res.Val)
 		res = res.Next
