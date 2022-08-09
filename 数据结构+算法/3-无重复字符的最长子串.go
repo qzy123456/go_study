@@ -85,13 +85,13 @@ func lengthOfLongestSubstring3(s string)int {
 		temp := s[end]
 		if _, ok := m[temp]; !ok {
 			//不存在说明该key是唯一的
-			m[s[end]] = end
+			m[temp] = end
 			end++ //移动滑动窗口
 			repeatCount = max(repeatCount, end-start)
 		} else {
 			//说明了有重复的，滑动窗口移动，则start+1,
 			//这个时候s[start]，s[end]就是第一次出现该字符的位置
-			delete(m, s[end])
+			delete(m, temp)
 			start++
 		}
 		//fmt.Println(m)

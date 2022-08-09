@@ -88,7 +88,7 @@ func maxSlidingWindow2(nums []int, k int) []int {
 }
 //解法3 单调队列
 func maxSlidingWindow3(nums []int, k int) []int {
-	q := []int{}
+	var q []int
 	push := func(i int) {
 		for len(q) > 0 && nums[i] >= nums[q[len(q)-1]] {
 			q = q[:len(q)-1]
@@ -129,6 +129,6 @@ func main() {
 	nums := []int{1,3,-1,-3,5,3,6,7}
 	k := 3
 	//fmt.Println(maxSlidingWindow(nums,k))
-	fmt.Println(maxSlidingWindow2(nums,k))
-	//fmt.Println(maxSlidingWindow3(nums,k))
+	//fmt.Println(maxSlidingWindow2(nums,k))
+	fmt.Println(maxSlidingWindow3(nums,k))
 }
