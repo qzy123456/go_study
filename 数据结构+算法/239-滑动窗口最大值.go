@@ -87,9 +87,12 @@ func maxSlidingWindow2(nums []int, k int) []int {
 	return result
 }
 //解法3 单调队列
+//单调递增栈：从栈顶到栈底，依次递增
+//单调递减栈：从栈顶到栈底，依次减小
 func maxSlidingWindow3(nums []int, k int) []int {
 	var q []int
 	push := func(i int) {
+		//维护递减队列
 		for len(q) > 0 && nums[i] >= nums[q[len(q)-1]] {
 			q = q[:len(q)-1]
 		}
@@ -99,17 +102,26 @@ func maxSlidingWindow3(nums []int, k int) []int {
 	for i := 0; i < k; i++ {
 		push(i)
 	}
-
+    //nums ==>  1,3,-1,-3,5,3,6,7, k==> 3
 	n := len(nums)
 	ans := make([]int, 1, n-k+1)
 	ans[0] = nums[q[0]]
+	//fmt.Println(q) //1 2
 	for i := k; i < n; i++ {
 		push(i)
+		//fmt.Println(nums[q[0]],q[0],i,k,i-k)
+		//3 1 3 3 0
+		//5 4 4 3 1
+		//5 4 5 3 2
+		//6 6 6 3 3
+		//7 7 7 3 4
+		//k个一区间
 		for q[0] <= i-k {
 			q = q[1:]
 		}
 		ans = append(ans, nums[q[0]])
 	}
+	//[3 3 5 5 6 7]
 	return ans
 }
 
