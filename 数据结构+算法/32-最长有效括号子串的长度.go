@@ -28,9 +28,9 @@ func longestValidParentheses(s string) int {
 	stack, res := []int{}, 0
 	stack = append(stack, -1)
 	for i := 0; i < len(s); i++ {
-		if s[i] == '(' {
+		if s[i] == '(' { //如果当前字符为'(':则直接将其进行压栈处理
 			stack = append(stack, i)
-		} else {
+		} else { //如果添加的是')',则取出栈顶元素,判断当前栈是否为空,若为空,则直接将i进行入栈处理
 			stack = stack[:len(stack)-1]
 			if len(stack) == 0 {
 				stack = append(stack, i)
