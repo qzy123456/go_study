@@ -5,6 +5,7 @@ import "fmt"
 
 func main() {
 	var tt int64 = time.Now().Unix()
+	println("我是时间戳", tt) //打印出 我是时间戳 1660791557
 	var s string = time.Unix(tt, 0).Format("2006-01-02 15:04:05")
 	println("我是时间戳转年月日", s) //打印出 我是时间戳转年月日 2019-12-04 18:33:29
 
