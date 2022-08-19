@@ -41,7 +41,6 @@ require (
 	github.com/iris-contrib/httpexpect v1.1.2 // indirect
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/jinzhu/gorm v1.9.16
-	github.com/julienschmidt/httprouter v1.2.0
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/kataras/golog v0.1.7 // indirect
 	github.com/kataras/iris v11.1.1+incompatible
@@ -65,6 +64,7 @@ require (
 	github.com/streadway/amqp v1.0.0
 	github.com/tidwall/gjson v1.12.0
 	github.com/valyala/fasthttp v1.31.0 // indirect
+	github.com/vmihailenco/msgpack v4.0.4+incompatible
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 	github.com/xuri/excelize/v2 v2.4.1
 	github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0 // indirect
