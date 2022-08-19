@@ -5,7 +5,7 @@ import (
 
 	"github.com/vmihailenco/msgpack"
 )
-
+//Go语言中的json包在序列化空接口存放的数字类型（整型、浮点型等）都序列化成float64类型。
 // msgpack demo
 
 type Person struct {
@@ -17,7 +17,7 @@ type Person struct {
 func main() {
 	p1 := Person{
 		Name:   "沙河娜扎",
-		Age:    18。2,
+		Age:    18,
 		Gender: "男",
 	}
 	// marshal
