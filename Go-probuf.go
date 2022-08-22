@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"log"
-	"../go/pb/pb"
+	"go-study/pb/pb"
 )
 
 func write() {

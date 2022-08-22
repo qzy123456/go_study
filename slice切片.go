@@ -14,7 +14,7 @@ func main() {
 		//多维数组的循环赋值
 		table[i] = make([]int, y)
 	}
-	fmt.Println(table)
+	fmt.Println(table) //[[0 0 0 0] [0 0 0 0]]
 	h, w := 2, 4
 	//数组
 	raw := make([]int, h*w)
