@@ -10,7 +10,7 @@ type HashMap struct {
 	next *HashMap
 }
 
-var table [16](*HashMap)
+var table [16]*HashMap
 
 func initTable() {
 	for i := range table{
@@ -18,8 +18,8 @@ func initTable() {
 	}
 }
 
-func getInstance() [16](*HashMap){
-	if(table[0] == nil){
+func getInstance() [16]*HashMap{
+	if table[0] == nil{
 		initTable()
 	}
 	return table
@@ -29,8 +29,8 @@ func genHashCode(k string) int{
 	if len(k) == 0{
 		return 0
 	}
-	var hashCode int = 0
-	var lastIndex int = len(k) - 1
+	var hashCode  = 0
+	var lastIndex  = len(k) - 1
 	for i := range k {
 		if i == lastIndex {
 			hashCode += int(k[i])
@@ -56,7 +56,7 @@ func put(k string, v string) string {
 	var tableIndex = indexTable(hashCode)
 	var nodeIndex = indexNode(hashCode)
 
-	var headPtr [16](*HashMap) = getInstance()
+	var headPtr = getInstance()
 	var headNode = headPtr[tableIndex]
 
 	if (*headNode).key == "" {
@@ -64,15 +64,15 @@ func put(k string, v string) string {
 		return ""
 	}
 
-	var lastNode *HashMap = headNode
-	var nextNode *HashMap = (*headNode).next
+	var lastNode  = headNode
+	var nextNode  = (*headNode).next
 
 	for nextNode != nil && (indexNode((*nextNode).hashCode) < nodeIndex){
 		lastNode = nextNode
 		nextNode = (*nextNode).next
 	}
 	if (*lastNode).hashCode == thisNode.hashCode {
-		var oldValue string = lastNode.value
+		var oldValue  = lastNode.value
 		lastNode.value = thisNode.value
 		return oldValue
 	}
@@ -89,8 +89,8 @@ func get(k string) string {
 	var hashCode = genHashCode(k)
 	var tableIndex = indexTable(hashCode)
 
-	var headPtr [16](*HashMap) = getInstance()
-	var node *HashMap = headPtr[tableIndex]
+	var headPtr = getInstance()
+	var node  = headPtr[tableIndex]
 
 	if (*node).key == k{
 		return (*node).value
