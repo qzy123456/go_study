@@ -28,20 +28,32 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	return newHead
 }
 
-func reverse(first *ListNode, last *ListNode) *ListNode {
-	fmt.Println("刚进来",first,last)  //1,3
-	prev := last
-	for first != last{
-		next := first.Next
-		fmt.Println("next",next) //2，3
-		first.Next = prev
-		prev = first
-		fmt.Println("prev",prev)//1 ，2
-		first = next
-		fmt.Println("first",first)//2 ，3
+func reverse(start, end *ListNode) *ListNode {
+	var pre *ListNode  //nil
+	cur := start  // 1
+	for cur != end {
+		next := cur.Next //2        //3
+		cur.Next = pre   //1-》nil  //2-》1-》nil
+		pre = cur     //pre = 1    //pre = 2
+		cur = next    //cur = 2    //cur = 3
 	}
-	return prev
+	return pre
 }
+
+//func reverse(first *ListNode, last *ListNode) *ListNode {
+//	fmt.Println("刚进来",first,last)  //1,3
+//	prev := last
+//	for first != last{
+//		next := first.Next
+//		fmt.Println("next",next) //2，3
+//		first.Next = prev
+//		prev = first
+//		fmt.Println("prev",prev)//1 ，2
+//		first = next
+//		fmt.Println("first",first)//2 ，3
+//	}
+//	return prev
+//}
 
 func reverseKGroup2(head *ListNode, k int) *ListNode {
 	length:=0
