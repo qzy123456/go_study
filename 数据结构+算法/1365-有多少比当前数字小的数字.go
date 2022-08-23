@@ -36,9 +36,14 @@ func smallerNumbersThanCurrent(nums []int) []int {
 	for i := n - 1; i >= 0; i-- {
 		m[nums[i]] = i
 	}
+	//m[8] = 4
+	//m[3] = 3
+	//m[2] = 1 重复的数字，map会覆盖
+	//m[1] = 0
 	for i, v := range rawNums {
 		res[i] = m[v]
 	}
+	//[4,0,1,1,3]
 	return res
 }
 func main() {
