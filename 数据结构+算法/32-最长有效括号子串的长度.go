@@ -25,7 +25,8 @@ import "fmt"
 // 计算当前有效字符串的长度，并且记录目前为止找到的最长子字符串。这种方法的时间复杂度是 O(n)，空间复杂度 O(1)。
 // 解法一 栈
 func longestValidParentheses(s string) int {
-	stack, res := []int{}, 0
+	var stack []int
+	res := 0
 	stack = append(stack, -1)
 	for i := 0; i < len(s); i++ {
 		if s[i] == '(' { //如果当前字符为'(':则直接将其进行压栈处理
