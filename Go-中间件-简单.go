@@ -13,7 +13,7 @@ func bar(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "bar")
 }
 
-func loggingMiddleware(next http.Handler) http.Handler {
+func use(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.URL.Path)
 		next.ServeHTTP(w, r)
@@ -22,7 +22,7 @@ func loggingMiddleware(next http.Handler) http.Handler {
 
 func main() {
 
-	http.Handle("/foo", loggingMiddleware(http.HandlerFunc(foo)))
-	http.Handle("/bar", loggingMiddleware(http.HandlerFunc(bar)))
+	http.Handle("/foo", use(http.HandlerFunc(foo)))
+	http.Handle("/bar", use(http.HandlerFunc(bar)))
 	http.ListenAndServe(":8080", nil)
 }

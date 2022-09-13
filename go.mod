@@ -50,6 +50,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.16 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/oxequa/grace v0.0.0-20180330101621-d1b62e904ab2
+	github.com/panjf2000/ants/v2 v2.5.0
 	github.com/pkg/profile v1.6.0
 	github.com/razeencheng/demo-go v0.0.0-20210720165156-8bf8fdecaaf5
 	github.com/robfig/cron v1.2.0
