@@ -4,11 +4,11 @@ import "fmt"
 
 func main() {
 	defer func() {
-		fmt.Print(recover())
+		fmt.Print(recover())  //第一个defer捕获panic（2）
 	}()
 	defer func() {
 		defer func() {
-			defer fmt.Print(recover())
+			defer fmt.Print(recover()) //捕获panic（1）
 		}()
 		panic(1)
 	}()

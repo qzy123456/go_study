@@ -17,5 +17,10 @@ func main() {
 	defer recover()
 	fmt.Println("444")
 	panic(2)
-	//2 1
+	//444
+	//222
+	//333
+	//2
+	//111
+	//1
 }
