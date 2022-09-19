@@ -59,19 +59,20 @@ func fibonacci1() func() int {
 	}
 }
 func main()  {
-	surroundingFuncEvaluatedNotInvoked(1)
-	noDeferFuncOrderWhenReturn()
-	fmt.Println(deferFuncWithAnonymousReturnValue()) //0
-	fmt.Println(deferFuncWithNamedReturnValue())   // 1
-  	//1.init=1
+	fmt.Println(surroundingFuncEvaluatedNotInvoked(1))
+	//1.init=1
 	//4.init=1
 	//2.init=1
 	//3.init=2
+	//1
+	fmt.Println(noDeferFuncOrderWhenReturn())
 	//before : result = 0
 	//after : result = 1
 	//return : result = 1
 	//0
-	//1
+	fmt.Println(deferFuncWithAnonymousReturnValue()) //0
+	fmt.Println(deferFuncWithNamedReturnValue())   // 1
+
 	f := fibonacci1()
 	for i := 0; i < 20; i++ {
 		fmt.Print(f(), " ")
