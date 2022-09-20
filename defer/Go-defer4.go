@@ -7,7 +7,7 @@ func main() {
 		fmt.Print(recover())  //第一个defer捕获panic（2）
 	}()
 	defer func() {
-		defer func() {
+		defer func() { //这里不加defer 就是捕获panic（2），结果就是2 1
 			defer fmt.Print(recover()) //捕获panic（1）
 		}()
 		panic(1)
