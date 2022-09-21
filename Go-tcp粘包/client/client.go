@@ -16,14 +16,14 @@ func main() {
 	sendData := getSendData()
 	for k, v := range sendData {
 		headSize := len(v)
-		var headBytes = make([]byte, HEAD_SIZE)
+		var headBytes = make([]byte, HeadSize)
 		binary.BigEndian.PutUint32(headBytes, uint32(headSize))
-		var buffer_client bytes.Buffer
+		var bufferClient bytes.Buffer
 
-		buffer_client.Write([]byte(HEADER))
-		buffer_client.Write(headBytes)
-		buffer_client.WriteString(v)
-		b3 := buffer_client.Bytes() //得到了b1+b2的结果
+		bufferClient.Write([]byte(HEADER))
+		bufferClient.Write(headBytes)
+		bufferClient.WriteString(v)
+		b3 := bufferClient.Bytes() //得到了b1+b2的结果
 		_, err := conn.Write(b3)
 		if err != nil {
 			panic(err)

@@ -25,9 +25,9 @@ func main() {
 }
 
 func handle(conn net.Conn) {
-	msg := make(chan string, CHAN_MSG_COUNT) // 这里设置消息channel可以容纳10个消息
+	msg := make(chan string, ChanMsgCount) // 这里设置消息channel可以容纳10个消息
 	// 缓存区设置最大为4G字节， 如果单个消息大于这个值就不能接受了
-	buffer1 := NewBuffer(conn, HEADER, BUFFER_LENGTH)
+	buffer1 := NewBuffer(conn, HEADER, BufferLength)
 
 	var wg sync.WaitGroup
 	wg.Add(2) // 主的routine将等待两个routine(读消息, 打印消息)的完成
