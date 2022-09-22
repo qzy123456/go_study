@@ -58,11 +58,15 @@ func bytesToInt(b []byte) int {
 }
 
 func main() {
+	var buf []byte
 	// 打包一个消息
-	buf := Packet([]byte("this is message"))
+	for i:=0;i<100 ;i++  {
+		s := fmt.Sprintf("%s%d","this is message ",i)
+		buf = Packet([]byte(s))
+	}
 	fmt.Println(string(buf))
-
 	// 解包一个消息
 	buf = Unpack(buf)
 	fmt.Println(string(buf))
+
 }

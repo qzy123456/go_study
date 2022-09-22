@@ -6,9 +6,14 @@ import (
 )
 
 func main() {
-	data := encoder("s")
-	fmt.Println(string(data))
-	decoder(data)
+	var buf []byte
+	for i:=0;i<100 ;i++ {
+		s := fmt.Sprintf("%s%d", "this is message ", i)
+		buf = encoder(s)
+	}
+	fmt.Println(string(buf))
+	decoder(buf)
+
 }
 
 /**
