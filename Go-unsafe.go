@@ -7,23 +7,42 @@ unsafe.Pointer 可以和 uintptr 进行相互转换。
 package main
 
 import (
- "fmt"
- "unsafe"
+	"fmt"
+	"unsafe"
 )
 
 type W struct {
- b int32
- c int64
+	b int32
+	c int64
+}
+
+type iface struct {
+	itab, data uintptr
 }
 
 func main() {
- var w *W = new(W)
- //这时w的变量打印出来都是默认值0，0
- fmt.Println(w.b,w.c)
+	var w *W = new(W)
+	//这时w的变量打印出来都是默认值0，0
+	fmt.Println(w.b, w.c)
 
- //现在我们通过指针运算给b变量赋值为10
- b := unsafe.Pointer(uintptr(unsafe.Pointer(w)) + unsafe.Offsetof(w.b))
- *((*int)(b)) = 10
- //此时结果就变成了10，0
- fmt.Println(w.b,w.c)
+	//现在我们通过指针运算给b变量赋值为10
+	d := unsafe.Pointer(uintptr(unsafe.Pointer(w)) + unsafe.Offsetof(w.b))
+	*((*int)(d)) = 10
+	//此时结果就变成了10，0
+	fmt.Println(w.b, w.c)
+
+	var a interface{} = nil
+
+	var b interface{} = (*int)(nil)
+
+	x := 5
+	var c interface{} = (*int)(&x)
+
+	ia := *(*iface)(unsafe.Pointer(&a))
+	ib := *(*iface)(unsafe.Pointer(&b))
+	ic := *(*iface)(unsafe.Pointer(&c))
+
+	fmt.Println(ia, ib, ic)
+
+	fmt.Println(*(*int)(unsafe.Pointer(ic.data)))
 }
