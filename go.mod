@@ -63,7 +63,8 @@ require (
 	github.com/sony/sonyflake v1.0.0
 	github.com/spf13/cast v1.4.1
 	github.com/streadway/amqp v1.0.0
-	github.com/tidwall/gjson v1.12.0
+	github.com/tidwall/buntdb v1.2.10
+	github.com/tidwall/gjson v1.14.3
 	github.com/valyala/fasthttp v1.31.0 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect

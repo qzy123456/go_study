@@ -57,4 +57,14 @@ func main() {
 		//关闭channel
 		close(ch1)
 	}()
+	orderLen := 5
+	order := make([]uint16, 2 * orderLen)
+
+	pollorder := order[:orderLen:orderLen]
+	lockorder := order[orderLen:][:orderLen:orderLen]
+				//先计算order[orderLen:]，得到【0，0，0，0，0】，再计算[:orderLen:orderLen]
+	fmt.Println("len(pollorder) = ", len(pollorder))
+	fmt.Println("cap(pollorder) = ", cap(pollorder))
+	fmt.Println("len(lockorder) = ", len(lockorder))
+	fmt.Println("cap(lockorder) = ", cap(lockorder))
 }
