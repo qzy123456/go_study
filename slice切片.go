@@ -62,6 +62,7 @@ func main() {
 
 	pollorder := order[:orderLen:orderLen]
 	lockorder := order[orderLen:][:orderLen:orderLen]
+	//lockorder := order[orderLen:][:len(order) - 5:orderLen] //支持计算
 				//先计算order[orderLen:]，得到【0，0，0，0，0】，再计算[:orderLen:orderLen]
 	fmt.Println("len(pollorder) = ", len(pollorder))
 	fmt.Println("cap(pollorder) = ", cap(pollorder))
