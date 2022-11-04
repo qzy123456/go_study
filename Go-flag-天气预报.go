@@ -9,7 +9,8 @@ import (
 	"github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/MichaelMure/go-term-markdown"
 )
-
+// "github.com/JohannesKaufmann/html-to-markdown" 这个库提供 html 转换为 markdown 的能力，
+// 而 "github.com/MichaelMure/go-term-markdown" 又可以将 markdown 格式转为可在 terminal 打印的字符串
 func GetWeather(city string) (string, error) {
 	url := "https://wttr.in/" + city
 	response, err := http.Get(url)
