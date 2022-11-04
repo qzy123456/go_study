@@ -3,7 +3,9 @@ module go-study
 go 1.13
 
 require (
+	github.com/JohannesKaufmann/html-to-markdown v1.3.6
 	github.com/Joker/jade v1.1.1 // indirect
+	github.com/MichaelMure/go-term-markdown v0.1.4
 	github.com/Shopify/goreferrer v0.0.0-20210630161223-536fa16abd6f // indirect
 	github.com/Shopify/sarama v1.30.0
 	github.com/afocus/captcha v0.0.0-20191010092841-4bd1f21c8868
@@ -57,7 +59,6 @@ require (
 	github.com/ryanuber/columnize v2.1.2+incompatible // indirect
 	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414
 	github.com/satori/go.uuid v1.2.0
-	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/smartystreets/goconvey v1.7.2 // indirect
 	github.com/sony/sonyflake v1.0.0
@@ -77,9 +78,9 @@ require (
 	go.mongodb.org/mongo-driver v1.8.0
 	go.uber.org/dig v1.13.0
 	go.uber.org/zap v1.19.1
-	golang.org/x/net v0.0.0-20211123203042-d83791d6bcd9
+	golang.org/x/net v0.0.0-20220909164309-bea034e7d591
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20211124211545-fe61309f8881
+	golang.org/x/sys v0.0.0-20220728004956-3c1f35247d10
 	google.golang.org/grpc v1.42.0
 	gopkg.in/go-playground/validator.v9 v9.31.0
 	gopkg.in/ini.v1 v1.65.0
