@@ -20,6 +20,7 @@ func main() {
 	go func() {
 		time.Sleep(2000)
 		loclstr := fmt.Sprintf("http://%s:8888", address[0])
+		//windows自动打开页面
 		cmd := exec.Command("cmd", "/C", "start "+loclstr)
 		cmd.Run()
 	}()
