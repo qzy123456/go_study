@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 func main() {
-	var ch1, ch2, ch3 = make(chan struct{}), make(chan struct{}), make(chan struct{})
+	var ch1, ch2, ch3 = make(chan struct{},1), make(chan struct{}), make(chan struct{})
 	nums := 5
 	var wg sync.WaitGroup
 	wg.Add(3)
@@ -16,7 +16,7 @@ func main() {
 			fmt.Println(s)
 			ch2 <- struct{}{}
 		}
-		<- ch1
+		//<- ch1 //如果要有缓冲的ch1，那么就不要这一行
 	}("A")
 
 	go func(s string) {
