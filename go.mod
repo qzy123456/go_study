@@ -48,7 +48,6 @@ require (
 	github.com/kataras/iris v11.1.1+incompatible
 	github.com/lib/pq v1.10.4
 	github.com/lonng/nano v0.5.0
-	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.16 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/oxequa/grace v0.0.0-20180330101621-d1b62e904ab2
@@ -62,7 +61,8 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/smartystreets/goconvey v1.7.2 // indirect
 	github.com/sony/sonyflake v1.0.0
-	github.com/spf13/cast v1.4.1
+	github.com/spf13/cast v1.3.0
+	github.com/spf13/viper v1.4.0
 	github.com/streadway/amqp v1.0.0
 	github.com/tidwall/buntdb v1.2.10
 	github.com/tidwall/gjson v1.14.3
@@ -77,13 +77,13 @@ require (
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	go.mongodb.org/mongo-driver v1.8.0
 	go.uber.org/dig v1.13.0
-	go.uber.org/zap v1.19.1
-	golang.org/x/net v0.0.0-20220909164309-bea034e7d591
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20220728004956-3c1f35247d10
-	google.golang.org/grpc v1.42.0
+	go.uber.org/zap v1.21.0
+	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b
+	golang.org/x/sync v0.1.0
+	golang.org/x/sys v0.0.0-20220908164124-27713097b956
+	google.golang.org/grpc v1.50.1
 	gopkg.in/go-playground/validator.v9 v9.31.0
-	gopkg.in/ini.v1 v1.65.0
+	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
 	gopl.io v0.0.0-20211004154805-1ae3ec64947b
 	moul.io/http2curl v1.0.0 // indirect
