@@ -16,3 +16,18 @@ enabled = true
 
 [clients]
 data = [ ["gamma", "delta"], [1, 2] ]
+[MultiDbTable]
+    [MultiDbTable.Db1]
+                 "flow" =10
+                 "purchase" = 10
+                 "wallet"= 10
+                 "customer_info_extra" = 10
+   [MultiDbTable.Db2]
+             "flow" =10
+             "purchase" = 10
+             "wallet"= 10
+             "customer_info_extra" = 10
+
+[dbWeight]
+      "db1" = 10
+      "db2" = 10
