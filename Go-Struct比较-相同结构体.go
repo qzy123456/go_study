@@ -13,6 +13,10 @@ type T1 struct {
 	slice []int
 	map1  map[string]string
 }
+type Tx struct {
+	Name  string
+	Age   int
+}
 
 func main() {
 	t1 := T1{
@@ -69,5 +73,14 @@ func main() {
 	fmt.Println(reflect.DeepEqual(t3, t5)) // true
 	fmt.Printf("%p, %p \n", t3, t5)        // 0xc000046050, 0xc000046050
 	fmt.Printf("%p, %p \n", &t3, &t5)      // 0xc000006030, 0xc000006040
-
+	//结构体内的数据都可以比较
+	t11 := Tx{
+		Name:  "yxc",
+		Age:   1,
+	}
+	t21 := Tx{
+		Name:  "yxc",
+		Age:   1,
+	}
+	fmt.Println(t11 == t21) //true
 }
