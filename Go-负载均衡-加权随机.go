@@ -14,8 +14,6 @@ var (
 	}
 
 	nodeAddress = make([]string, 0)
-
-	res = make(map[string]int)
 )
 
 func getNodeAddress() string {
@@ -33,24 +31,16 @@ func getNodeAddress() string {
 	idx := rand.Intn(len(nodeAddress))
 	address := nodeAddress[idx]
 
-	if _, ok := res[address]; !ok {
-		res[address] = 1
-		return address
-	}
-
-	res[address] = res[address] + 1
 	return address
 }
 
 func main() {
 	i := 1
 	for {
-		if i > 100 {
+		if i > 10 {
 			break
 		}
-
-		getNodeAddress()
+		fmt.Println(getNodeAddress())
 		i++
 	}
-	fmt.Println(res)
 }

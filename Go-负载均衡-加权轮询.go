@@ -40,13 +40,13 @@ func main() {
 		{"192.168.10.12", 1, 0},
 	}
 
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 10; i++ {
 		server := getSever(servers)
 
 		if server == nil {
 			continue
 		}
 
-		fmt.Printf("| %s | %d |\n", server.host, server.weight)
+		fmt.Printf("| %s | %d | %d |\n", server.host, server.weight,server.currentWeight)
 	}
 }
