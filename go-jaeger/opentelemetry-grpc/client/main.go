@@ -28,8 +28,8 @@ func main() {
 
 	var conn *grpc.ClientConn
 	conn, err = grpc.Dial(":7777", grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithUnaryInterceptor(otelgrpc.UnaryClientInterceptor()),
-		grpc.WithStreamInterceptor(otelgrpc.StreamClientInterceptor()),
+		grpc.WithUnaryInterceptor(otelgrpc.UnaryClientInterceptor()), //普通方法拦截器
+		grpc.WithStreamInterceptor(otelgrpc.StreamClientInterceptor()), //流方法拦截器
 	)
 
 	if err != nil {
