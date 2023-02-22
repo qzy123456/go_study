@@ -126,11 +126,13 @@ func (s *Register) listenExit() {
 	}()
 }
 
+//要想关闭注册页面，这个不丢失，这个就注释，让其自然过期
 func (s *Register) unRegister() {
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
 	defer cancel()
 	_, err := s.cli.Delete(ctx, s.key)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 }
