@@ -83,6 +83,7 @@ func startListen() {
 func RPCConnect(ctx context.Context, serviceName string, etcdRegister *discovery.Resolver) (conn *grpc.ClientConn, err error) {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
+		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"round_robin"}`), // 使用负载均衡，默认是pick_first优先选第一个，或者round_robin
 	}
 	addr := fmt.Sprintf("%s:///%s", etcdRegister.Scheme(), serviceName)
 	conn, err = grpc.DialContext(ctx, addr, opts...)

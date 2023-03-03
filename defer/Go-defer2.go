@@ -9,7 +9,7 @@ func main() {
 	}()
 	defer func() {
 		fmt.Println("222")
-		defer fmt.Println(recover())
+		defer fmt.Println(recover()) //这个defer捕获的是panic(2)
 		defer panic(1)
 		fmt.Println("333")
 		recover()
