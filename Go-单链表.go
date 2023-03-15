@@ -138,7 +138,7 @@ func Traverse(head *LinkNode) {
 //主函数测试
 func main() {
 	//定义头节点  也就是空节点
-	var head *LinkNode = &LinkNode{Data: 0, Next: nil}
+	var head = &LinkNode{Data: 0, Next: nil}
 	var nodeArray []Elements
 	//生成10个节点数据
 	for i := 0; i < 10; i++ {

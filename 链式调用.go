@@ -7,12 +7,12 @@ type Studentt struct {
 	age int
 }
 
-func (s *Studentt)SetName(name string) (*Studentt) {
+func (s *Studentt)SetName(name string) *Studentt {
 	s.name = name
 	return s
 }
 
-func (s *Studentt)SetAge(age int) (*Studentt) {
+func (s *Studentt)SetAge(age int) *Studentt {
 	s.age = age
 	return s
 }

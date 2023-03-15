@@ -15,9 +15,11 @@ func main() {
 	// 根据键删除对应的键值对
 	scene.Delete("london")
 	// 遍历所有sync.Map中的键值对
+	count := 0
+	//并没有长度的函数 只能循环
 	scene.Range(func(k, v interface{}) bool {
 		fmt.Println( k, "=》",v)
+		count++
 		return true
 	})
-
 }

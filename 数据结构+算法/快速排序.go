@@ -31,6 +31,25 @@ func quickSort(arr []int, start, end int) {
 	}
 }
 
+func QuickSort(arr []int) []int  {
+	if len(arr)<2{
+		return arr
+	}
+	mid := arr[0]
+	var left,right []int
+	for i :=1;i<len(arr);i++{
+		if arr[i]>mid{
+			right = append(right,arr[i])
+		}else{
+			left = append(left,arr[i])
+		}
+	}
+	left = QuickSort(left)
+	right = QuickSort(right)
+	left = append(left,mid)
+	return append(left,right...)
+}
+
 func main() {
 	arr := []int{3, 7, 9, 8, 38, 93, 12, 222, 45, 93, 23, 84, 65, 2}
 	quickSort(arr, 0, len(arr)-1)

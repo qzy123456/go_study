@@ -16,6 +16,7 @@ require (
 	github.com/aymerick/raymond v2.0.2+incompatible // indirect
 	github.com/bitly/go-simplejson v0.5.0
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davyxu/golog v0.1.0
 	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
@@ -26,15 +27,18 @@ require (
 	github.com/gin-contrib/zap v0.0.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/go-stomp/stomp v2.1.4+incompatible
 	github.com/go-xorm/xorm v0.7.9
 	github.com/gogo/protobuf v1.3.2
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/golang/protobuf v1.5.2
+	github.com/golang/protobuf v1.5.3
 	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2
+	github.com/hibiken/asynq v0.24.0 // indirect
 	github.com/hprose/hprose-golang v2.0.6+incompatible
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect
@@ -61,7 +65,7 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/smartystreets/goconvey v1.7.2 // indirect
 	github.com/sony/sonyflake v1.0.0
-	github.com/spf13/cast v1.3.0
+	github.com/spf13/cast v1.5.0
 	github.com/spf13/viper v1.4.0
 	github.com/streadway/amqp v1.0.0
 	github.com/tidwall/buntdb v1.2.10
@@ -80,8 +84,10 @@ require (
 	go.uber.org/zap v1.21.0
 	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b
 	golang.org/x/sync v0.1.0
-	golang.org/x/sys v0.0.0-20220908164124-27713097b956
+	golang.org/x/sys v0.6.0
+	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/grpc v1.50.1
+	google.golang.org/protobuf v1.29.0 // indirect
 	gopkg.in/go-playground/validator.v9 v9.31.0
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22

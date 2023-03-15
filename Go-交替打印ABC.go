@@ -9,6 +9,9 @@ func main() {
 	nums := 5
 	var wg sync.WaitGroup
 	wg.Add(3)
+	//让ch1先执行
+	ch1 <- struct{}{}
+
 	go func(s string) {
 		defer wg.Done()
 		for i := 1; i <= nums; i++ {
@@ -16,7 +19,6 @@ func main() {
 			fmt.Println(s)
 			ch2 <- struct{}{}
 		}
-		//<- ch1 //如果要有缓冲的ch1，那么就不要这一行
 	}("A")
 
 	go func(s string) {
@@ -36,7 +38,5 @@ func main() {
 			ch1 <- struct{}{}
 		}
 	}("C")
-    //让ch1先执行
-	ch1 <- struct{}{}
 	wg.Wait()
 }

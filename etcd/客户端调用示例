@@ -1,0 +1,33 @@
+//package srd
+//import (
+//	"context"
+//	"fmt"
+//	"log"
+//	"google.golang.org/grpc"
+//	pb "path/to/your/grpc/proto"  // 引入 gRPC 的 proto 文件
+//)
+//
+//func main() {
+//	// 定义 Service 的 DNS 名称和端口号
+//	address := "your-grpc-service.default.svc.cluster.local:50051"
+//
+//	// 连接 gRPC 服务
+//	conn, err := grpc.Dial(address, grpc.WithInsecure())
+//	if err != nil {
+//		log.Fatalf("failed to connect: %v", err)
+//	}
+//	defer conn.Close()
+//	client := pb.NewYourServiceClient(conn)
+//
+//	// 调用 gRPC 服务
+//	response, err := client.YourMethod(context.Background(), &pb.YourRequest{})
+//	if err != nil {
+//		log.Fatalf("failed to call: %v", err)
+//	}
+//	fmt.Println(response)
+//}
+//
+//在该示例中，your-grpc-service.default.svc.cluster.local 是 Service 对象的 DNS 名称，50051 是 gRPC 服务的端口号。
+// 在使用 grpc.Dial 连接 gRPC 服务时，需要将 DNS 名称和端口号作为参数传递给该函数。
+//需要替换示例中的 your-grpc-service、path/to/your/grpc/proto 和 YourMethod
+// 等内容为实际的 Service 名称、proto 文件路径和 gRPC 方法名称。

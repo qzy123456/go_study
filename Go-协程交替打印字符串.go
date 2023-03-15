@@ -10,56 +10,57 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(2)
 
-	str := "hello,world!"
-	str1 := []byte(str)
-
-	sc := make(chan byte, len(str))
-	count := make(chan int)
-
+	str := "hello，朝阳!"
+	str1 := []rune(str)
+    //定义一个长度和字符串一样的chan
+	sc := make(chan rune, len(str))
+	//当前轮到谁打印的信号
+	sigle := make(chan struct{})
+    //往chan里面写数据
 	for _, v := range str1 {
 		sc <- v
 	}
 
 	close(sc)
+	//开始
+	sigle <- struct{}{}
 
 	go func() {
 		defer wg.Done()
 		for {
-			ball , ok := <- count
+			ball , ok := <- sigle
 			if ok {
 				pri, ok1 := <- sc
 				if ok1 {
 					fmt.Printf("go 1 : %c\n", pri)
 				} else {
-					close(count)
+					close(sigle)//字符串打完，可以关闭了
 					return
 				}
-				count <- ball
 			} else {
 				return
 			}
+			sigle <- ball
 		}
 	}()
 
 	go func() {
 		defer wg.Done()
 		for {
-			ball , ok := <- count
+			ball , ok := <- sigle
 			if ok {
 				pri, ok1 := <- sc
 				if ok1 {
 					fmt.Printf("go 2 : %c\n", pri)
 				} else {
-					close(count)
+					close(sigle)//字符串打完，可以关闭了
 					return
 				}
 			} else {
 				return
 			}
-			count <- ball
+			sigle <- ball
 		}
 	}()
-
-	count <- -1
 	wg.Wait()
 }

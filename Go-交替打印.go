@@ -17,10 +17,9 @@ func main() {
 	wg.Add(2)
 	arr1 := []int{1, 2, 3, 4, 5, 6}
 	arr2 := []string{"A", "B", "C", "D", "E", "F"}
-	c := make(chan int, 1)
-	d := make(chan string, 1)
+	c := make(chan int)
+	d := make(chan string)
 	go func() {
-
 		i := 0
 		for i < 6 {
 			fmt.Print(arr1[i])
@@ -44,5 +43,4 @@ func main() {
 		wg.Done()
 	}()
 	wg.Wait()
-	fmt.Println()
 }
