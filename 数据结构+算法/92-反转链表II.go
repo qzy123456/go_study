@@ -38,21 +38,38 @@ func reverseBetween(head *Node , m int,n int) *Node {
    return dummy.Next
 }
 
+/***
+  头插法
+ */
 func reverseBetween2(head *Node, left, right int) *Node {
-	// 设置 dummyNode 是这一类问题的一般做法
+	// 设置 dummyNode 是这一类问题的一般做法，防止第一个节点就开始反转
 	dummyNode := &Node{}
 	dummyNode.Next = head
 	pre := dummyNode
+	//pre移到开启的之前
 	for i := 1; i < left; i++ {
 		pre = pre.Next
 	}
+	//fmt.Println(pre.Value) //1
+	//cur就是要开始逸动的节点
 	cur := pre.Next
+	//fmt.Println(cur.Value)  //2
 	for i := 0; i < right-left; i++ {
 		next := cur.Next
+		//fmt.Println(next.Value) //3
 		cur.Next = next.Next
+		//fmt.Println(cur.Next.Value) //4
 		next.Next = pre.Next
+		//fmt.Println(next.Next.Value) //2
 		pre.Next = next
+		//fmt.Println(pre.Next.Value)//3
 	}
+	//第一轮 // 1  -3 - 2 - 4 -5
+	//         pre     cur
+	//第2轮 // 1-  4 - 3 -  2   -5
+	//        pre          cur
+	//第3轮 // 1   -5-4-3- 2
+	//        pre	      cur
 	return dummyNode.Next
 }
 
@@ -62,8 +79,7 @@ func main() {
 	var node3 = Node{3, &node4}
 	var node2 = Node{2, &node3}
 	var node1 = Node{1, &node2}
-	var node0 = Node{0, &node1}
-	res := reverseBetween2(&node0,2,5)
+	res := reverseBetween2(&node1,2,5)
 	for res !=nil{
 		fmt.Print("value:", res.Value, " ->")
 		res = res.Next
