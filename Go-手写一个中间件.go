@@ -14,8 +14,10 @@ type Context struct {
 }
 
 // 注册方法到中间件
-func (this *Context) Use(f func(c *Context)) {
-	this.Handlers = append(this.Handlers, f)
+func (this *Context) Use(fs ...func(c *Context)) {
+	for _,f :=range fs{
+		this.Handlers = append(this.Handlers, f)
+	}
 }
 
 // 执行下一个方法
@@ -43,8 +45,7 @@ func (this *Context) Abort() {
 //主方法
 func main() {
 	c := &Context{}
-	c.Use(MiddlewareOne())
-	c.Use(MiddlewareTwo())
+	c.Use(MiddlewareOne(),MiddlewareTwo())
 	c.GET("/get", func(c *Context) {
 		fmt.Println("执行具体方法")
 	})

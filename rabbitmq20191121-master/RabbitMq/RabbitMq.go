@@ -8,7 +8,7 @@ import (
 //这里主要是RabbitMQ的一些信息。包括其结构体和函数。
 
 //连接信息
-const MQURL = "amqp://du:du@129.211.78.6:5672/dudevirtualhost"
+const MQURL = "amqp://guest:guest@192.168.16.92:5672/"
 
 //RabbitMQ结构体
 type RabbitMQ struct {
@@ -39,6 +39,6 @@ func (r *RabbitMQ) Destory() {
 //错误的函数处理
 func (r *RabbitMQ) failOnErr(err error, message string) {
 	if err != nil {
-		fmt.Printf("err是:%s,小杜同学手写的信息是:%s", err, message)
+		fmt.Printf("err是:%s,:%s", err, message)
 	}
 }

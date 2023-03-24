@@ -69,6 +69,15 @@ func (r *RabbitMQ) ConsumeSimple() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	//消费者流控，防止暴库
+	//r.channel.Qos(
+	//	//每次只接受一个消息进行消费
+	//	1,
+	//	//服务器传递的最大容量（以8位字节为单位）
+	//	0,
+	//	//true对全局可用，false只对当前channel可用
+	//	false,
+	//)
 	//第二步,接收消息
 	msgs, err := r.channel.Consume(
 		q.Name,

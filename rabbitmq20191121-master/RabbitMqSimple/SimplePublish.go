@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"../../rabbitmq20191121-master/RabbitMq"
+	"rabbitmq20191121-master/RabbitMq"
 )
 
 func main() {
