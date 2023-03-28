@@ -28,10 +28,10 @@ func (r *RabbitMQ) PublishSimple(message string) {
 	//第一步，申请队列，如不存在，则自动创建之，存在，则路过。
 	_, err := r.channel.QueueDeclare(
 		r.QueueName,
-		false,
-		false,
-		false,
-		false,
+		true, //是否持久化
+		false, //是否自动删除，自动ack
+		false, //是否独占
+		false, //是否阻塞
 		nil,
 	)
 	if err != nil {
